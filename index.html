@@ -1,0 +1,957 @@
+<!DOCTYPE html>  
+<html lang="bn">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="description" content="Jhunjhur — Desi jewellery and little accessories">  
+    <title>Jhunjhur | Jewellery & Accessories</title>  
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Galada&family=Montserrat:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">  
+    <link rel="stylesheet" href="css/styles.css">  
+</head>  
+
+<body>  
+
+<!-- =========================================================  
+     NAVBAR  
+========================================================= -->  
+
+<header class="navbar" id="navbar">  
+    <div class="navbar-inner">  
+        <a href="#home" class="brand" aria-label="Jhunjhur Home">  
+            <img src="assets/jhunjhur-logo.png" alt="Jhunjhur logo" class="brand-logo">  
+            <span class="brand-text">  
+                <strong>Jhunjhur</strong>  
+                <small>JEWELLERY & ACCESSORIES</small>  
+            </span>  
+        </a>  
+
+        <nav class="nav-links" id="navLinks">  
+            <a href="#home">Home</a>  
+            <a href="#shop">Shop</a>  
+            <a href="#categories">Categories</a>  
+            <a href="#why-jhunjhur">Why Jhunjhur</a>  
+            <a href="#about">About</a>  
+            <a href="#contact">Contact</a>  
+
+            <div class="mobile-nav-actions">  
+                <button type="button" class="mobile-action-btn" id="mobileSearchBtn">  
+                    <i class="fa-solid fa-magnifying-glass"></i>  
+                    <span>Search</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileAccountBtn">  
+                    <i class="fa-regular fa-user"></i>  
+                    <span>Account</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileCartBtn">  
+                    <i class="fa-solid fa-bag-shopping"></i>  
+                    <span>Cart</span>  
+                    <b id="mobileCartCount">0</b>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileWishlistBtn">  
+                    <i class="fa-regular fa-heart"></i>  
+                    <span>Wishlist</span>  
+                    <b id="mobileWishlistCount">0</b>  
+                </button>  
+            </div>  
+        </nav>  
+
+        <div class="nav-actions">  
+            <button type="button" aria-label="Search" id="searchBtn">  
+                <i class="fa-solid fa-magnifying-glass"></i>  
+            </button>  
+            <button type="button" aria-label="Account" id="accountBtn">  
+                <i class="fa-regular fa-user"></i>  
+            </button>  
+            <button type="button" class="bag-btn" id="bagBtn" aria-label="Shopping bag">  
+                <i class="fa-solid fa-bag-shopping"></i>  
+                <span class="bag-count" id="bagCount">0</span>  
+            </button>  
+        </div>  
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">  
+            <i class="fa-solid fa-bars"></i>  
+        </button>  
+    </div>  
+</header>  
+
+<!-- =========================================================  
+     MOBILE OVERLAY  
+========================================================= -->  
+
+<div class="mobile-overlay" id="mobileOverlay"></div>  
+
+<!-- =========================================================  
+     MAIN CONTENT  
+========================================================= -->  
+
+<main>  
+
+    <!-- HERO -->  
+    <section class="hero" id="home">  
+        <img src="assets/hero-bg(3).png" alt="" class="hero-image" id="heroImage" aria-hidden="true">  
+        <div class="hero-overlay" aria-hidden="true"></div>  
+
+        <div class="hero-content">  
+            <div class="hero-label">  
+                <span class="label-line"></span>  
+                <span>JEWELLERY & ACCESSORIES</span>  
+                <span class="label-line"></span>  
+            </div>  
+
+            <h1 class="hero-title">  
+                <span class="title-normal">চুড়ি মানেই</span>  
+                <span class="title-script">ঝুনঝুর।</span>  
+            </h1>  
+
+            <p class="hero-description">দেশি ছোঁয়ায়, আপনার সাজ হোক আরও সুন্দর, আরও আপন।</p>  
+
+            <a href="#shop" class="shop-btn">  
+                <span>Shop Now</span>  
+                <i class="fa-solid fa-arrow-right"></i>  
+            </a>  
+        </div>  
+
+        <div class="feature-bar">  
+            <div class="feature-item">  
+                <div class="feature-icon"><i class="fa-solid fa-sun"></i></div>  
+                <div class="feature-text">  
+                    <strong>DESI VIBES</strong>  
+                    <span>দেশি ঐতিহ্যের ছোঁয়া</span>  
+                </div>  
+            </div>  
+            <div class="feature-divider"></div>  
+            <div class="feature-item">  
+                <div class="feature-icon"><i class="fa-regular fa-heart"></i></div>  
+                <div class="feature-text">  
+                    <strong>HANDPICKED</strong>  
+                    <span>যত্ন নিয়ে বেছে নেওয়া</span>  
+                </div>  
+            </div>  
+            <div class="feature-divider"></div>  
+            <div class="feature-item">  
+                <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>  
+                <div class="feature-text">  
+                    <strong>MADE FOR YOU</strong>  
+                    <span>নিজের বা প্রিয়জনের জন্য</span>  
+                </div>  
+            </div>  
+            <div class="feature-divider"></div>  
+            <div class="feature-item">  
+                <div class="feature-icon"><i class="fa-solid fa-truck"></i></div>  
+                <div class="feature-text">  
+                    <strong>SAFE DELIVERY</strong>  
+                    <span>সারা দেশে নিরাপদ ডেলিভারি</span>  
+                </div>  
+            </div>  
+        </div>  
+    </section>  
+
+    <!-- SHOP -->  
+    <section class="shop-section" id="shop">  
+        <div class="shop-heading">  
+            <span class="section-kicker">EXPLORE JHUNJHUR</span>  
+            <h2>সাজ হোক দেশি <span>ভাইব হোক আইকনিক</span></h2>  
+            <p>দেশি ঐতিহ্যের ছোঁয়ায় ছোট্ট ছোট্ট সৌন্দর্য।</p>  
+        </div>  
+
+        <div class="category-bar" id="categoryBar">  
+            <button class="category-tab active" data-category="all">  
+                <img src="assets/all.png" alt="All">  
+                <span>All Products</span>  
+            </button>  
+            <button class="category-tab" data-category="bangles">  
+                <img src="assets/bangles.png" alt="Bangles">  
+                <span>Bangles</span>  
+            </button>  
+            <button class="category-tab" data-category="earrings">  
+                <img src="assets/earrings.png" alt="Earrings">  
+                <span>Earrings</span>  
+            </button>  
+            <button class="category-tab" data-category="pendants">  
+                <img src="assets/pendants.png" alt="Pendants">  
+                <span>Pendants</span>  
+            </button>  
+            <button class="category-tab" data-category="rings">  
+                <img src="assets/rings.png" alt="Rings">  
+                <span>Rings</span>  
+            </button>  
+            <button class="category-tab" data-category="tikli">  
+                <img src="assets/tikli.png" alt="Tikli">  
+                <span>Tikli</span>  
+            </button>  
+            <button class="category-tab" data-category="hair">  
+                <img src="assets/hair-accessories.png" alt="Hair Accessories">  
+                <span>Hair Accessories</span>  
+            </button>  
+        </div>  
+
+        <div class="products-wrapper">  
+            <div class="products-top">  
+                <div>  
+                    <span class="products-kicker">JHUNJHUR COLLECTION</span>  
+                    <h3 id="productHeading">All Products</h3>  
+                    <p id="productSubheading">সব ধরনের সুন্দর প্রোডাক্ট</p>  
+                </div>  
+                <span class="product-count" id="productCount">14 Products</span>  
+            </div>  
+
+            <div class="product-grid" id="productGrid">  
+                <!-- BANGLES -->  
+                <article class="product-card" data-id="bangles-1" data-category="bangles" data-name="Desi Churi Set" data-price="450" data-image="assets/bangles1.jpg" data-description="দেশি সাজের জন্য সুন্দর traditional churi set.">  
+                    <div class="product-image">  
+                        <img src="assets/bangles1.jpg" alt="Desi Churi Set">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">BANGLES</span>  
+                        <h4>Desi Churi Set</h4>  
+                        <strong>৳450</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="bangles-2" data-category="bangles" data-name="Golden Churi Set" data-price="480" data-image="assets/bangles2.jpg" data-description="Elegant golden churi set for festive and everyday desi looks.">  
+                    <div class="product-image">  
+                        <img src="assets/bangles2.jpg" alt="Golden Churi Set">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">BANGLES</span>  
+                        <h4>Golden Churi Set</h4>  
+                        <strong>৳480</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="bangles-3" data-category="bangles" data-name="Pearl Churi Set" data-price="520" data-image="assets/bangles3.jpg" data-description="Soft pearl detailing with a classic desi finish.">  
+                    <div class="product-image">  
+                        <img src="assets/bangles3.jpg" alt="Pearl Churi Set">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">BANGLES</span>  
+                        <h4>Pearl Churi Set</h4>  
+                        <strong>৳520</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="bangles-4" data-category="bangles" data-name="Traditional Churi" data-price="390" data-image="assets/bangles4.jpg" data-description="A classic traditional churi for a timeless desi look.">  
+                    <div class="product-image">  
+                        <img src="assets/bangles4.jpg" alt="Traditional Churi">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">BANGLES</span>  
+                        <h4>Traditional Churi</h4>  
+                        <strong>৳390</strong>  
+                    </div>  
+                </article>  
+
+                <!-- EARRINGS -->  
+                <article class="product-card" data-id="earrings-1" data-category="earrings" data-name="Golden Jhumka" data-price="350" data-image="assets/earrings1.jpg" data-description="Classic golden jhumka with an elegant desi finish.">  
+                    <div class="product-image">  
+                        <img src="assets/earrings1.jpg" alt="Golden Jhumka">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">EARRINGS</span>  
+                        <h4>Golden Jhumka</h4>  
+                        <strong>৳350</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="earrings-2" data-category="earrings" data-name="Pearl Drop Earrings" data-price="420" data-image="assets/earrings2.jpg" data-description="Elegant pearl drop earrings for a soft feminine look.">  
+                    <div class="product-image">  
+                        <img src="assets/earrings2.jpg" alt="Pearl Drop Earrings">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">EARRINGS</span>  
+                        <h4>Pearl Drop Earrings</h4>  
+                        <strong>৳420</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="earrings-3" data-category="earrings" data-name="Desi Floral Earrings" data-price="380" data-image="assets/earrings3.jpg" data-description="Floral inspired earrings with a beautiful desi touch.">  
+                    <div class="product-image">  
+                        <img src="assets/earrings3.jpg" alt="Desi Floral Earrings">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">EARRINGS</span>  
+                        <h4>Desi Floral Earrings</h4>  
+                        <strong>৳380</strong>  
+                    </div>  
+                </article>  
+
+                <!-- PENDANTS -->  
+                <article class="product-card" data-id="pendants-1" data-category="pendants" data-name="Classic Gold Pendant" data-price="550" data-image="assets/pendants1.jpg" data-description="A minimal classic gold pendant for everyday elegance.">  
+                    <div class="product-image">  
+                        <img src="assets/pendants1.jpg" alt="Classic Gold Pendant">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">PENDANTS</span>  
+                        <h4>Classic Gold Pendant</h4>  
+                        <strong>৳550</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="pendants-2" data-category="pendants" data-name="Floral Pendant" data-price="620" data-image="assets/pendants2.jpg" data-description="A delicate floral pendant made for graceful styling.">  
+                    <div class="product-image">  
+                        <img src="assets/pendants2.jpg" alt="Floral Pendant">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">PENDANTS</span>  
+                        <h4>Floral Pendant</h4>  
+                        <strong>৳620</strong>  
+                    </div>  
+                </article>  
+
+                <!-- RINGS -->  
+                <article class="product-card" data-id="rings-1" data-category="rings" data-name="Floral Pearl Ring" data-price="450" data-image="assets/rings1.jpg" data-description="A floral pearl ring for a delicate everyday look.">  
+                    <div class="product-image">  
+                        <img src="assets/rings1.jpg" alt="Floral Pearl Ring">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">RINGS</span>  
+                        <h4>Floral Pearl Ring</h4>  
+                        <strong>৳450</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="rings-2" data-category="rings" data-name="Classic Gold Ring" data-price="390" data-image="assets/rings2.jpg" data-description="A simple classic gold ring that goes with every look.">  
+                    <div class="product-image">  
+                        <img src="assets/rings2.jpg" alt="Classic Gold Ring">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">RINGS</span>  
+                        <h4>Classic Gold Ring</h4>  
+                        <strong>৳390</strong>  
+                    </div>  
+                </article>  
+
+                <!-- TIKLI -->  
+                <article class="product-card" data-id="tikli-1" data-category="tikli" data-name="Antique Tikli" data-price="350" data-image="assets/tikli1.jpg" data-description="Traditional antique-inspired tikli for a complete desi look.">  
+                    <div class="product-image">  
+                        <img src="assets/tikli1.jpg" alt="Antique Tikli">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">TIKLI</span>  
+                        <h4>Antique Tikli</h4>  
+                        <strong>৳350</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="tikli-2" data-category="tikli" data-name="Golden Floral Tikli" data-price="320" data-image="assets/tikli2.jpg" data-description="Golden floral tikli with a delicate traditional touch.">  
+                    <div class="product-image">  
+                        <img src="assets/tikli2.jpg" alt="Golden Floral Tikli">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">TIKLI</span>  
+                        <h4>Golden Floral Tikli</h4>  
+                        <strong>৳320</strong>  
+                    </div>  
+                </article>  
+
+                <!-- HAIR -->  
+                <article class="product-card" data-id="hair-1" data-category="hair" data-name="Floral Hair Clip" data-price="280" data-image="assets/hair1.jpg" data-description="A pretty floral hair clip for a soft desi hairstyle.">  
+                    <div class="product-image">  
+                        <img src="assets/hair1.jpg" alt="Floral Hair Clip">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">HAIR ACCESSORIES</span>  
+                        <h4>Floral Hair Clip</h4>  
+                        <strong>৳280</strong>  
+                    </div>  
+                </article>  
+
+                <article class="product-card" data-id="hair-2" data-category="hair" data-name="Desi Hair Band" data-price="250" data-image="assets/hair2.jpg" data-description="A simple desi hair band for everyday styling.">  
+                    <div class="product-image">  
+                        <img src="assets/hair2.jpg" alt="Desi Hair Band">  
+                        <button class="wishlist-btn" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>  
+                    </div>  
+                    <div class="product-info">  
+                        <span class="product-category">HAIR ACCESSORIES</span>  
+                        <h4>Desi Hair Band</h4>  
+                        <strong>৳250</strong>  
+                    </div>  
+                </article>  
+            </div>  
+        </div>  
+    </section>  
+
+    <!-- =========================================================
+         WHY JHUNJHUR + REVIEWS (FIXED)
+    ========================================================= -->  
+
+    <section class="trust-section" id="why-jhunjhur">  
+
+        <div class="trust-container">  
+
+            <!-- Section Heading -->  
+            <div class="trust-heading">  
+                <span class="section-kicker">WHY JHUNJHUR?</span>  
+                <h2>সাজের সাথে থাকুক একটু ভরসাও।</h2>  
+            </div>  
+
+            <!-- Service / Trust Features -->  
+            <div class="trust-features">  
+
+                <div class="trust-feature">  
+                    <div class="trust-icon">  
+                        <i class="fa-regular fa-gem"></i>  
+                    </div>  
+                    <div>  
+                        <h3>PREMIUM QUALITY</h3>  
+                        <p>যত্নে বেছে নেওয়া প্রিমিয়াম কোয়ালিটির জুয়েলারি।</p>  
+                    </div>  
+                </div>  
+
+                <div class="trust-feature">  
+                    <div class="trust-icon">  
+                        <i class="fa-solid fa-truck"></i>  
+                    </div>  
+                    <div>  
+                        <h3>SAFE DELIVERY</h3>  
+                        <p>সারা দেশে নিরাপদ ও দ্রুত ডেলিভারি।</p>  
+                    </div>  
+                </div>  
+
+                <div class="trust-feature">  
+                    <div class="trust-icon">  
+                        <i class="fa-solid fa-bag-shopping"></i>  
+                    </div>  
+                    <div>  
+                        <h3>EASY ORDERING</h3>  
+                        <p>সহজে পছন্দ করুন, সহজেই অর্ডার করুন।</p>  
+                    </div>  
+                </div>  
+
+                <div class="trust-feature">  
+                    <div class="trust-icon">  
+                        <i class="fa-regular fa-heart"></i>  
+                    </div>  
+                    <div>  
+                        <h3>CUSTOMER SUPPORT</h3>  
+                        <p>প্রয়োজনে আমরা আছি, সবসময় আপনার পাশে।</p>  
+                    </div>  
+                </div>  
+
+            </div>  
+
+            <!-- Customer Reviews (FIXED WITH PRODUCT IMAGES) -->  
+            <div class="reviews-section">  
+
+                <div class="reviews-heading">  
+                    <span class="decor-line"></span>  
+                    <h2>WHAT OUR CUSTOMERS SAY</h2>  
+                    <span class="decor-line"></span>  
+                </div>  
+
+                <div class="reviews-slider">  
+
+                    <button class="review-arrow review-prev" id="reviewPrev" type="button" aria-label="Previous review">  
+                        <i class="fa-solid fa-chevron-left"></i>  
+                    </button>  
+
+                    <div class="reviews-track-wrapper">  
+                        <div class="reviews-track" id="reviewsTrack">  
+
+                            <!-- Review 1 - with product image -->  
+                            <article class="review-card">  
+                                <div class="review-avatar">  
+                                    <img src="assets/bangles1.jpg" alt="Customer with Desi Churi">  
+                                </div>  
+
+                                <div class="review-content">  
+                                    <div class="review-top">  
+                                        <div class="stars">★★★★★</div>  
+                                        <span class="quote-mark">“</span>  
+                                    </div>  
+
+                                    <p>  
+                                        চুড়িগুলো ছবির থেকেও বেশি সুন্দর!  
+                                        কোয়ালিটি অসাধারণ, খুব যত্ন নিয়ে প্যাক করা ছিল।  
+                                        ভালোবাসা রইলো ঝুনঝুর!  
+                                    </p>  
+
+                                    <strong>— Sohana Islam</strong>  
+                                    <span class="review-product">  
+                                        <i class="fa-regular fa-gem"></i> Desi Churi Set  
+                                    </span>  
+                                </div>  
+                            </article>  
+
+                            <!-- Review 2 - with product image -->  
+                            <article class="review-card">  
+                                <div class="review-avatar">  
+                                    <img src="assets/earrings1.jpg" alt="Customer with Golden Jhumka">  
+                                </div>  
+
+                                <div class="review-content">  
+                                    <div class="review-top">  
+                                        <div class="stars">★★★★★</div>  
+                                        <span class="quote-mark">“</span>  
+                                    </div>  
+
+                                    <p>  
+                                        প্রথমবার অর্ডার করেছিলাম, অভিজ্ঞতা দারুণ!  
+                                        ডেলিভারি ছিল দ্রুত এবং জুয়েলারিগুলো একদম পারফেক্ট।  
+                                    </p>  
+
+                                    <strong>— Farhana Mim</strong>  
+                                    <span class="review-product">  
+                                        <i class="fa-regular fa-gem"></i> Golden Jhumka  
+                                    </span>  
+                                </div>  
+                            </article>  
+
+                            <!-- Review 3 - with product image -->  
+                            <article class="review-card">  
+                                <div class="review-avatar">  
+                                    <img src="assets/pendants1.jpg" alt="Customer with Classic Gold Pendant">  
+                                </div>  
+
+                                <div class="review-content">  
+                                    <div class="review-top">  
+                                        <div class="stars">★★★★★</div>  
+                                        <span class="quote-mark">“</span>  
+                                    </div>  
+
+                                    <p>  
+                                        প্রতিটা কালেকশনই এত সুন্দর হয়!  
+                                        ঝুনঝুর মানেই ট্রাস্ট।  
+                                        সবসময় আমার ফেভারিট জায়গা এখানেই।  
+                                    </p>  
+
+                                    <strong>— Nusrat Jahan</strong>  
+                                    <span class="review-product">  
+                                        <i class="fa-regular fa-gem"></i> Classic Gold Pendant  
+                                    </span>  
+                                </div>  
+                            </article>  
+
+                        </div>  
+                    </div>  
+
+                    <button class="review-arrow review-next" id="reviewNext" type="button" aria-label="Next review">  
+                        <i class="fa-solid fa-chevron-right"></i>  
+                    </button>  
+
+                </div>  
+
+                <!-- Review Dots -->  
+                <div class="review-dots" id="reviewDots">  
+                    <button class="review-dot active" type="button" aria-label="Review 1"></button>  
+                    <button class="review-dot" type="button" aria-label="Review 2"></button>  
+                    <button class="review-dot" type="button" aria-label="Review 3"></button>  
+                </div>  
+
+            </div>  
+
+        </div>  
+
+        <!-- =========================
+             FOLLOW JHUNJHUR (FIXED WITH PRODUCT IMAGES)
+        ========================== -->  
+        <div class="social-strip">  
+
+            <div class="social-intro">  
+                <span>FOLLOW JHUNJHUR</span>  
+                <h3>নতুন সাজ, নতুন অনুপ্রেরণা</h3>  
+
+                <div class="social-links">  
+                    <a href="#" aria-label="Instagram">  
+                        <i class="fa-brands fa-instagram"></i>  
+                    </a>  
+                    <a href="#" aria-label="Facebook">  
+                        <i class="fa-brands fa-facebook-f"></i>  
+                    </a>  
+                    <span>@jhunjhur.official</span>  
+                </div>  
+            </div>  
+
+            <div class="social-gallery">  
+                <!-- Using product images as social gallery -->  
+                <img src="assets/bangles2.jpg" alt="Jhunjhur bangles" loading="lazy">  
+                <img src="assets/earrings2.jpg" alt="Jhunjhur earrings" loading="lazy">  
+                <img src="assets/pendants2.jpg" alt="Jhunjhur pendant" loading="lazy">  
+                <img src="assets/rings1.jpg" alt="Jhunjhur ring" loading="lazy">  
+                <img src="assets/tikli1.jpg" alt="Jhunjhur tikli" loading="lazy">  
+                <img src="assets/hair1.jpg" alt="Jhunjhur hair accessory" loading="lazy">  
+            </div>  
+
+        </div>  
+
+    </section>  
+
+    <!-- =========================
+         ABOUT (FIXED WITH HOME-BG)
+    ========================== -->  
+    <section class="about-section" id="about">  
+
+        <!-- Background image added via CSS -->  
+
+        <div class="about-content">  
+
+            <span class="section-kicker">A LITTLE ABOUT US</span>  
+
+            <h2>  
+                একটু দেশি,  
+                <span>একটু আপন।</span>  
+            </h2>  
+
+            <p>  
+                Jhunjhur-এর প্রতিটি কালেকশনে আমরা খুঁজি সেই ছোট্ট  
+                দেশি ছোঁয়াটা—যেটা আপনার সাজকে করে তোলে আরও নিজের মতো।  
+                প্রতিদিনের সাজ হোক কিংবা বিশেষ কোনো মুহূর্ত,  
+                আপনার সাথে মানিয়ে যায় এমন সুন্দর কিছুই খুঁজে দিতে চাই আমরা।  
+            </p>  
+
+            <div class="about-stats">  
+                <div class="about-stat">  
+                    <strong>500+</strong>  
+                    <span>Happy Customers</span>  
+                </div>  
+                <div class="about-stat">  
+                    <strong>100%</strong>  
+                    <span>Handpicked Quality</span>  
+                </div>  
+                <div class="about-stat">  
+                    <strong>24/7</strong>  
+                    <span>Customer Support</span>  
+                </div>  
+            </div>  
+
+        </div>  
+
+    </section>  
+
+    <!-- =========================
+         FOOTER
+    ========================== -->  
+    <footer class="site-footer" id="contact">
+
+    <div class="footer-main">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+                <img src="assets/jhunjhur-logo.png" alt="Jhunjhur">
+                <span>Jhunjhur</span>
+            </a>
+            <p>দেশি ছোঁয়ায় আপনার সাজের ছোট্ট ছোট্ট সৌন্দর্য।</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+
+        <!-- Categories -->
+        <div class="footer-column">
+            <h3>CATEGORIES</h3>
+            <a href="index.html#shop">Bangles</a>
+            <a href="index.html#shop">Earrings</a>
+            <a href="index.html#shop">Pendants</a>
+            <a href="index.html#shop">Rings</a>
+            <a href="index.html#shop">Tikli</a>
+            <a href="index.html#shop">Hair Accessories</a>
+        </div>
+
+        <!-- POLICIES (NEW) -->
+        <div class="footer-column">
+            <h3>POLICIES</h3>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="shipping.html">Shipping Policy</a>
+            <a href="returns.html">Returns Policy</a>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-column footer-contact">
+            <h3>GET IN TOUCH</h3>
+            <a href="tel:+8801000000000"><i class="fa-solid fa-phone"></i> +880 1XXX-XXXXXX</a>
+            <a href="mailto:hello@jhunjhur.com"><i class="fa-regular fa-envelope"></i> hello@jhunjhur.com</a>
+            <span><i class="fa-solid fa-location-dot"></i> Bangladesh</span>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Jhunjhur. All rights reserved.</span>
+        <span>Desi. Timeless. Yours.</span>
+    </div>
+
+</footer>  
+
+</main>  
+
+<!-- =========================================================  
+     PRODUCT MODAL  
+========================================================= -->  
+
+<div class="product-modal-overlay" id="productModal" aria-hidden="true">  
+    <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalProductName">  
+        <button class="modal-close" id="modalClose" aria-label="Close product details">  
+            <i class="fa-solid fa-xmark"></i>  
+        </button>  
+
+        <div class="modal-product-image">  
+            <img id="modalProductImage" src="" alt="">  
+            <button class="modal-wishlist-btn" id="modalWishlistBtn" aria-label="Add to wishlist">  
+                <i class="fa-regular fa-heart"></i>  
+            </button>  
+        </div>  
+
+        <div class="modal-product-info">  
+            <span class="modal-category" id="modalProductCategory">BANGLES</span>  
+            <h2 id="modalProductName">Product Name</h2>  
+            <strong class="modal-price" id="modalProductPrice">৳450</strong>  
+            <p class="modal-description" id="modalProductDescription">Product description</p>  
+
+            <div class="modal-size-section" id="modalSizeSection">  
+                <div class="modal-option-heading">  
+                    <strong>Size (in inches)</strong>  
+                    <span id="selectedSizeText">Select a size</span>  
+                </div>  
+                <div class="size-options" id="sizeOptions">  
+                    <button type="button" class="size-btn" data-size="2.4">2.4</button>  
+                    <button type="button" class="size-btn" data-size="2.6">2.6</button>  
+                    <button type="button" class="size-btn" data-size="2.8">2.8</button>  
+                    <button type="button" class="size-btn" data-size="2.10">2.10</button>  
+                </div>  
+            </div>  
+
+            <div class="modal-quantity-section">  
+                <strong>Quantity</strong>  
+                <div class="quantity-control">  
+                    <button type="button" id="modalQtyMinus">−</button>  
+                    <span id="modalQty">1</span>  
+                    <button type="button" id="modalQtyPlus">+</button>  
+                </div>  
+            </div>  
+
+            <button type="button" class="modal-add-cart" id="modalAddCart">  
+                <span>Add to Cart</span>  
+                <i class="fa-solid fa-bag-shopping"></i>  
+            </button>  
+        </div>  
+    </div>  
+</div>  
+
+<!-- =========================================================  
+     SEARCH MODAL  
+========================================================= -->  
+
+<div class="search-modal-overlay" id="searchModal" aria-hidden="true">  
+    <div class="search-modal" role="dialog" aria-modal="true">  
+        <button class="modal-close" id="searchClose" aria-label="Close search">  
+            <i class="fa-solid fa-xmark"></i>  
+        </button>  
+        <div class="search-modal-content">  
+            <div class="search-icon-wrap">  
+                <i class="fa-solid fa-magnifying-glass"></i>  
+            </div>  
+            <h2>What are you looking for?</h2>  
+            <p>Search our collection of desi jewellery & accessories</p>  
+            <div class="search-input-wrap">  
+                <i class="fa-solid fa-search"></i>  
+                <input type="text" id="searchInput" placeholder="Type product name or category..." autofocus>  
+            </div>  
+            <div class="search-results" id="searchResults"></div>  
+            <div class="search-empty" id="searchEmpty">  
+                <i class="fa-solid fa-search"></i>  
+                <p>Start typing to see results</p>  
+            </div>  
+        </div>  
+    </div>  
+</div>  
+
+<!-- =========================================================  
+     ACCOUNT MODAL  
+========================================================= -->  
+
+<div class="account-modal-overlay" id="accountModal" aria-hidden="true">  
+    <div class="account-modal" role="dialog" aria-modal="true">  
+        <button class="modal-close" id="accountClose" aria-label="Close account">  
+            <i class="fa-solid fa-xmark"></i>  
+        </button>  
+        <div class="account-modal-content">  
+            <div class="account-icon">  
+                <i class="fa-regular fa-user"></i>  
+            </div>  
+            <h2>Account Feature</h2>  
+            <p>We're working on something special for you!</p>  
+            <div class="account-features">  
+                <div class="account-feature">  
+                    <i class="fa-regular fa-clock"></i>  
+                    <span>Order History</span>  
+                </div>  
+                <div class="account-feature">  
+                    <i class="fa-regular fa-heart"></i>  
+                    <span>Saved Items</span>  
+                </div>  
+                <div class="account-feature">  
+                    <i class="fa-regular fa-credit-card"></i>  
+                    <span>Easy Checkout</span>  
+                </div>  
+            </div>  
+            <button class="account-notify-btn" id="accountNotifyBtn">  
+                <i class="fa-regular fa-bell"></i>  
+                Notify Me When Ready  
+            </button>  
+            <p class="account-note">Coming soon! Stay tuned for updates.</p>  
+        </div>  
+    </div>  
+</div>  
+
+<!-- =========================================================  
+     BAG DRAWER  
+========================================================= -->  
+
+<div class="bag-overlay" id="bagOverlay" aria-hidden="true"></div>  
+
+<aside class="bag-drawer" id="bagDrawer" aria-hidden="true">  
+    <div class="bag-header">  
+        <div>  
+            <span>JHUNJHUR</span>  
+            <h2>Your Bag</h2>  
+        </div>  
+        <button type="button" id="bagClose" aria-label="Close bag">  
+            <i class="fa-solid fa-xmark"></i>  
+        </button>  
+    </div>  
+
+    <div class="bag-tabs">  
+        <button type="button" class="bag-tab active" data-bag-view="cart">  
+            Cart <span id="drawerCartCount">0</span>  
+        </button>  
+        <button type="button" class="bag-tab" data-bag-view="wishlist">  
+            Wishlist <span id="drawerWishlistCount">0</span>  
+        </button>  
+    </div>  
+
+    <div class="bag-content">  
+        <div class="bag-view active" id="cartView">  
+            <div class="bag-items" id="cartItems"></div>  
+            <div class="empty-bag" id="emptyCart">  
+                <i class="fa-solid fa-bag-shopping"></i>  
+                <h3>Your cart is empty</h3>  
+                <p>পছন্দের কিছু যোগ করুন, তারপর এখানে ফিরে আসুন।</p>  
+                <button type="button" class="empty-action" id="continueShopping">Continue Shopping</button>  
+            </div>  
+        </div>  
+
+        <div class="bag-view" id="wishlistView">  
+            <div class="wishlist-items" id="wishlistItems"></div>  
+            <div class="empty-bag" id="emptyWishlist">  
+                <i class="fa-regular fa-heart"></i>  
+                <h3>No favourites yet</h3>  
+                <p>ভালো লাগা জিনিসগুলো এখানে রেখে দিন।</p>  
+                <button type="button" class="empty-action" id="continueWishlistShopping">Explore Collection</button>  
+            </div>  
+        </div>  
+    </div>  
+
+    <div class="cart-summary" id="cartSummary">  
+        <div>  
+            <span>Subtotal</span>  
+            <strong id="cartTotal">৳0</strong>  
+        </div>  
+        <small>Delivery charge will be calculated at checkout.</small>  
+        <button type="button" class="checkout-btn" id="checkoutBtn">  
+            Proceed to Order <i class="fa-solid fa-arrow-right"></i>  
+        </button>  
+    </div>  
+</aside>  
+
+<!-- =========================================================  
+     ORDER MODAL  
+========================================================= -->  
+
+<div class="order-overlay" id="orderModal" aria-hidden="true">  
+    <div class="order-modal">  
+        <button type="button" class="modal-close" id="orderClose" aria-label="Close order form">  
+            <i class="fa-solid fa-xmark"></i>  
+        </button>  
+
+        <div class="order-heading">  
+            <span>JHUNJHUR ORDER</span>  
+            <h2>আপনার অর্ডারটি সম্পূর্ণ করুন</h2>  
+            <p>আপনার তথ্য দিন, আমরা অর্ডারটি কনফার্ম করার জন্য যোগাযোগ করব।</p>  
+        </div>  
+
+        <form id="orderForm">  
+            <div class="order-field">  
+                <label for="customerName">আপনার নাম</label>  
+                <input type="text" id="customerName" required placeholder="আপনার নাম লিখুন">  
+            </div>  
+            <div class="order-field">  
+                <label for="customerPhone">মোবাইল নম্বর</label>  
+                <input type="tel" id="customerPhone" required placeholder="01XXXXXXXXX">  
+            </div>  
+            <div class="order-field">  
+                <label for="customerAddress">ডেলিভারি ঠিকানা</label>  
+                <textarea id="customerAddress" rows="3" required placeholder="সম্পূর্ণ ঠিকানা লিখুন"></textarea>  
+            </div>  
+
+            <div class="order-total">  
+                <span>Order Total</span>  
+                <strong id="orderTotal">৳0</strong>  
+            </div>  
+
+            <button type="submit" class="place-order-btn">  
+                Place Order <i class="fa-solid fa-check"></i>  
+            </button>  
+        </form>  
+    </div>  
+</div>  
+
+<!-- =========================================================  
+     ORDER SUCCESS MODAL  
+========================================================= -->  
+
+<div class="order-success-overlay" id="orderSuccessModal" aria-hidden="true">  
+    <div class="order-success-modal" role="dialog" aria-modal="true">  
+        <div class="success-content">  
+            <div class="success-icon">  
+                <i class="fa-solid fa-check-circle"></i>  
+            </div>  
+            <h2>🎉 Order Placed Successfully!</h2>  
+            <p id="successMessage">Thank you! We will contact you shortly to confirm your order.</p>  
+            <div class="success-details" id="successDetails"></div>  
+            <button type="button" class="success-continue-btn" id="orderSuccessClose">  
+                Continue Shopping <i class="fa-solid fa-arrow-right"></i>  
+            </button>  
+        </div>  
+    </div>  
+</div>  
+
+<!-- =========================================================  
+     TOAST NOTIFICATION  
+========================================================= -->  
+
+<div class="toast-container" id="toastContainer"></div>  
+
+<script src="js/script.js"></script>  
+</body>  
+</html>
