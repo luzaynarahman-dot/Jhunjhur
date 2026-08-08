@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Jhunjhur</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Galada&family=Montserrat:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .blog-page {
+            padding: 130px 6% 100px;
+            background: var(--cream);
+        }
+        
+        .blog-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+        
+        .blog-header .section-kicker {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .blog-header h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--green);
+        }
+        
+        .blog-header h1 span {
+            font-family: "Galada", cursive;
+            color: var(--gold);
+        }
+        
+        .blog-header p {
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 1rem;
+            color: #6c665b;
+            margin-top: 8px;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(168, 117, 37, 0.08);
+            box-shadow: 0 4px 20px rgba(48, 38, 23, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(48, 38, 23, 0.08);
+        }
+        
+        .blog-card-image {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: #eee2d0;
+        }
+        
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.03);
+        }
+        
+        .blog-card-content {
+            padding: 20px 22px 25px;
+        }
+        
+        .blog-card-content .meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.55rem;
+            color: #b0a694;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .blog-card-content .meta .category {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .blog-card-content h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.2rem;
+            color: var(--green);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .blog-card-content p {
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 0.82rem;
+            line-height: 1.8;
+            color: #6c665b;
+            margin-bottom: 12px;
+        }
+        
+        .blog-card-content .read-more {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s ease;
+        }
+        
+        .blog-card-content .read-more:hover {
+            gap: 12px;
+        }
+        
+        .blog-sidebar {
+            display: none;
+        }
+        
+        @media (max-width: 992px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .blog-page {
+                padding: 110px 5% 80px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (Same as index.html) -->
+<header class="navbar" id="navbar">  
+    <div class="navbar-inner">  
+        <a href="index.html" class="brand" aria-label="Jhunjhur Home">  
+            <img src="assets/jhunjhur-logo.png" alt="Jhunjhur logo" class="brand-logo">  
+            <span class="brand-text">  
+                <strong>Jhunjhur</strong>  
+                <small>JEWELLERY & ACCESSORIES</small>  
+            </span>  
+        </a>  
+
+        <nav class="nav-links" id="navLinks">  
+            <a href="index.html">Home</a>  
+            <a href="index.html#shop">Shop</a>  
+            <a href="index.html#categories">Categories</a>  
+            <a href="index.html#why-jhunjhur">Why Jhunjhur</a>  
+            <a href="about.html">About</a>  
+            <a href="index.html#contact">Contact</a>  
+
+            <div class="mobile-nav-actions">  
+                <button type="button" class="mobile-action-btn" id="mobileSearchBtn">  
+                    <i class="fa-solid fa-magnifying-glass"></i>  
+                    <span>Search</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileAccountBtn">  
+                    <i class="fa-regular fa-user"></i>  
+                    <span>Account</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileCartBtn">  
+                    <i class="fa-solid fa-bag-shopping"></i>  
+                    <span>Cart</span>  
+                    <b id="mobileCartCount">0</b>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileWishlistBtn">  
+                    <i class="fa-regular fa-heart"></i>  
+                    <span>Wishlist</span>  
+                    <b id="mobileWishlistCount">0</b>  
+                </button>  
+            </div>  
+        </nav>  
+
+        <div class="nav-actions">  
+            <button type="button" aria-label="Search" id="searchBtn">  
+                <i class="fa-solid fa-magnifying-glass"></i>  
+            </button>  
+            <button type="button" aria-label="Account" id="accountBtn">  
+                <i class="fa-regular fa-user"></i>  
+            </button>  
+            <button type="button" class="bag-btn" id="bagBtn" aria-label="Shopping bag">  
+                <i class="fa-solid fa-bag-shopping"></i>  
+                <span class="bag-count" id="bagCount">0</span>  
+            </button>  
+        </div>  
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">  
+            <i class="fa-solid fa-bars"></i>  
+        </button>  
+    </div>  
+</header>  
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- =========================================================
+     BLOG CONTENT
+========================================================= -->
+
+<section class="blog-page">
+
+    <div class="blog-header">
+        <span class="section-kicker">OUR JOURNAL</span>
+        <h1>Jhunjhur <span>ব্লগ</span></h1>
+        <p>সাজের টিপস, নতুন কালেকশন এবং দেশি ঐতিহ্যের গল্প</p>
+    </div>
+
+    <div class="blog-grid">
+
+        <!-- Blog 1 -->
+        <article class="blog-card">
+            <div class="blog-card-image">
+                <img src="assets/blog1.jpg" alt="Traditional bangles" onerror="this.src='https://via.placeholder.com/400x250/f7eee1/a87525?text=Traditional+Bangles'">
+            </div>
+            <div class="blog-card-content">
+                <div class="meta">
+                    <span class="category">Fashion</span>
+                    <span>•</span>
+                    <span>January 15, 2026</span>
+                </div>
+                <h3>দেশি চুড়ির ঐতিহ্য: বাংলার গহনা</h3>
+                <p>
+                    বাংলার নারীদের সাজে চুড়ির যে ঐতিহ্য, তা শতাব্দী প্রাচীন। জানুন কীভাবে চুড়ি হয়ে উঠেছে আমাদের সংস্কৃতির অঙ্গ।
+                </p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog 2 -->
+        <article class="blog-card">
+            <div class="blog-card-image">
+                <img src="assets/blog2.jpg" alt="Styling tips" onerror="this.src='https://via.placeholder.com/400x250/f7eee1/a87525?text=Styling+Tips'">
+            </div>
+            <div class="blog-card-content">
+                <div class="meta">
+                    <span class="category">Style Tips</span>
+                    <span>•</span>
+                    <span>January 10, 2026</span>
+                </div>
+                <h3>৫ টি স্টাইলিং টিপস: নতুন সাজে নিজেকে খুঁজুন</h3>
+                <p>
+                    ছোট্ট কিছু পরিবর্তনে আপনার সাজ হতে পারে আরও সুন্দর। রইল ৫ টি সহজ স্টাইলিং টিপস যা আপনার লুক বদলে দেবে।
+                </p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog 3 -->
+        <article class="blog-card">
+            <div class="blog-card-image">
+                <img src="assets/blog3.jpg" alt="Eid collection" onerror="this.src='https://via.placeholder.com/400x250/f7eee1/a87525?text=Eid+Collection'">
+            </div>
+            <div class="blog-card-content">
+                <div class="meta">
+                    <span class="category">Collection</span>
+                    <span>•</span>
+                    <span>January 5, 2026</span>
+                </div>
+                <h3>ঈদের সাজ: আমাদের নতুন কালেকশন</h3>
+                <p>
+                    ঈদ উপলক্ষে আমাদের নতুন কালেকশন নিয়ে এসেছি কিছু অসাধারণ ডিজাইন। দেখুন কী আছে আপনার জন্য।
+                </p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog 4 -->
+        <article class="blog-card">
+            <div class="blog-card-image">
+                <img src="assets/blog4.jpg" alt="Jhumka history" onerror="this.src='https://via.placeholder.com/400x250/f7eee1/a87525?text=Jhumka+History'">
+            </div>
+            <div class="blog-card-content">
+                <div class="meta">
+                    <span class="category">History</span>
+                    <span>•</span>
+                    <span>December 28, 2025</span>
+                </div>
+                <h3>ঝুমকার ইতিহাস: বাংলার ঐতিহ্যবাহী গহনা</h3>
+                <p>
+                    ঝুমকা শুধু একটি গহনা নয়, এটি বাংলার নারীদের আত্মবিশ্বাসের প্রতীক। জানুন ঝুমকার ইতিহাস ও বিবর্তন।
+                </p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog 5 -->
+        <article class="blog-card">
+            <div class="blog-card-image">
+                <img src="assets/blog5.jpg" alt="Desi wedding" onerror="this.src='https://via.placeholder.com/400x250/f7eee1/a87525?text=Desi+Wedding'">
+            </div>
+            <div class="blog-card-content">
+                <div class="meta">
+                    <span class="category">Wedding</span>
+                    <span>•</span>
+                    <span>December 20, 2025</span>
+                </div>
+                <h3>বিয়ের সাজ: দেশি গহনার চয়ন</h3>
+                <p>
+                    বিয়ের দিনের সাজে দেশি গহনার গুরুত্ব অপরিসীম। কীভাবে বেছে নেবেন আপনার বিয়ের সাজের জন্য পারফেক্ট গহনা।
+                </p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+        <!-- Blog 6 -->
+        <article class="blog-card">
+            <div class="blog-card-image">
+                <img src="assets/blog6.jpg" alt="Sustainability" onerror="this.src='https://via.placeholder.com/400x250/f7eee1/a87525?text=Sustainability'">
+            </div>
+            <div class="blog-card-content">
+                <div class="meta">
+                    <span class="category">Sustainability</span>
+                    <span>•</span>
+                    <span>December 15, 2025</span>
+                </div>
+                <h3>টেকসই ফ্যাশন: দেশি জুয়েলারির ভবিষ্যৎ</h3>
+                <p>
+                    টেকসই ফ্যাশন এখন সময়ের প্রয়োজন। কিভাবে দেশি জুয়েলারি হতে পারে পরিবেশবান্ধব এবং টেকসই।
+                </p>
+                <a href="#" class="read-more">Read More →</a>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<!-- FOOTER (Same as index.html) -->
+<footer class="site-footer" id="contact">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="footer-logo">
+                <img src="assets/jhunjhur-logo.png" alt="Jhunjhur">
+                <span>Jhunjhur</span>
+            </a>
+
+            <p>দেশি ছোঁয়ায় আপনার সাজের ছোট্ট ছোট্ট সৌন্দর্য।</p>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+
+        </div>
+
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>POLICIES</h3>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="shipping.html">Shipping Policy</a>
+            <a href="returns.html">Returns Policy</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>GET IN TOUCH</h3>
+            <a href="tel:+8801000000000"><i class="fa-solid fa-phone"></i> +880 1XXX-XXXXXX</a>
+            <a href="mailto:hello@jhunjhur.com"><i class="fa-regular fa-envelope"></i> hello@jhunjhur.com</a>
+            <span><i class="fa-solid fa-location-dot"></i> Bangladesh</span>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Jhunjhur. All rights reserved.</span>
+        <span>Desi. Timeless. Yours.</span>
+    </div>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
