@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =========================================================
+         SEO META TAGS
+    ========================================================= -->
+    <title>Jhunjhur — Desi Jewellery & Accessories | Traditional Bangles, Earrings & More</title>
+    <meta name="description" content="Jhunjhur offers premium desi jewellery including traditional bangles, earrings, pendants, rings, and hair accessories. Handpicked quality with safe delivery across Bangladesh.">
+    <meta name="keywords" content="desi jewellery, traditional bangles, earrings, pendants, rings, tikli, hair accessories, Bangladesh jewellery, jhunjhur">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Jhunjhur">
+    <meta name="language" content="Bengali">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jhunjhur — Desi Jewellery & Accessories">
+    <meta property="og:description" content="দেশি ছোঁয়ায় আপনার সাজের ছোট্ট ছোট্ট সৌন্দর্য। Premium desi jewellery handpicked for you.">
+    <meta property="og:image" content="https://yourdomain.com/assets/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jhunjhur">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jhunjhur — Desi Jewellery & Accessories">
+    <meta name="twitter:description" content="Premium desi jewellery handpicked for you. Traditional bangles, earrings, pendants & more.">
+    <meta name="twitter:image" content="https://yourdomain.com/assets/og-image.jpg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://yourdomain.com/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Jhunjhur",
+        "description": "Desi jewellery and little accessories for everyday elegance.",
+        "url": "https://yourdomain.com",
+        "logo": "https://yourdomain.com/assets/jhunjhur-logo.png",
+        "address": { "@type": "PostalAddress", "addressCountry": "BD" },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+8801XXX-XXXXXX",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Galada&family=Montserrat:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+<header class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <a href="#home" class="brand" aria-label="Jhunjhur Home">
+            <img src="assets/jhunjhur-logo.png" alt="Jhunjhur logo" class="brand-logo" width="72" height="72">
+            <span class="brand-text">
+                <strong>Jhunjhur</strong>
+                <small>JEWELLERY & ACCESSORIES</small>
+            </span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#categories">Categories</a>
+            <a href="#why-jhunjhur">Why Jhunjhur</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="#contact">Contact</a>
+
+            <div class="mobile-nav-actions">
+                <button type="button" class="mobile-action-btn" id="mobileSearchBtn" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Search</span>
+                </button>
+                <button type="button" class="mobile-action-btn" id="mobileAccountBtn" aria-label="Account">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Account</span>
+                </button>
+                <button type="button" class="mobile-action-btn" id="mobileCartBtn" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Cart</span>
+                    <b id="mobileCartCount">0</b>
+                </button>
+                <button type="button" class="mobile-action-btn" id="mobileWishlistBtn" aria-label="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Wishlist</span>
+                    <b id="mobileWishlistCount">0</b>
+                </button>
+            </div>
+        </nav>
+
+        <div class="nav-actions">
+            <button type="button" aria-label="Search" id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button type="button" aria-label="Account" id="accountBtn">
+                <i class="fa-regular fa-user"></i>
+            </button>
+            <button type="button" class="bag-btn" id="bagBtn" aria-label="Shopping bag">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="bag-count" id="bagCount">0</span>
+            </button>
+        </div>
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+<main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <img src="assets/hero-bg(3).png" alt="" class="hero-image" id="heroImage" aria-hidden="true" loading="lazy">
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <div class="hero-label">
+                <span class="label-line"></span>
+                <span>JEWELLERY & ACCESSORIES</span>
+                <span class="label-line"></span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="title-normal">চুড়ি মানেই</span>
+                <span class="title-script">ঝুনঝুর।</span>
+            </h1>
+
+            <p class="hero-description">দেশি ছোঁয়ায়, আপনার সাজ হোক আরও সুন্দর, আরও আপন।</p>
+
+            <a href="#shop" class="shop-btn">
+                <span>Shop Now</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="feature-bar">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-sun"></i></div>
+                <div class="feature-text">
+                    <strong>DESI VIBES</strong>
+                    <span>দেশি ঐতিহ্যের ছোঁয়া</span>
+                </div>
+            </div>
+            <div class="feature-divider"></div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-regular fa-heart"></i></div>
+                <div class="feature-text">
+                    <strong>HANDPICKED</strong>
+                    <span>যত্ন নিয়ে বেছে নেওয়া</span>
+                </div>
+            </div>
+            <div class="feature-divider"></div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>
+                <div class="feature-text">
+                    <strong>MADE FOR YOU</strong>
+                    <span>নিজের বা প্রিয়জনের জন্য</span>
+                </div>
+            </div>
+            <div class="feature-divider"></div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fa-solid fa-truck"></i></div>
+                <div class="feature-text">
+                    <strong>SAFE DELIVERY</strong>
+                    <span>সারা দেশে নিরাপদ ডেলিভারি</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOP -->
+    <section class="shop-section" id="shop">
+        <div class="shop-heading">
+            <span class="section-kicker">EXPLORE JHUNJHUR</span>
+            <h2>সাজ হোক দেশি <span>ভাইব হোক আইকনিক</span></h2>
+            <p>দেশি ঐতিহ্যের ছোঁয়ায় ছোট্ট ছোট্ট সৌন্দর্য।</p>
+        </div>
+
+        <div class="category-bar" id="categoryBar">
+            <!-- Categories loaded from JavaScript -->
+        </div>
+
+        <div class="products-wrapper">
+            <div class="products-top">
+                <div>
+                    <span class="products-kicker">JHUNJHUR COLLECTION</span>
+                    <h3 id="productHeading">All Products</h3>
+                    <p id="productSubheading">সব ধরনের সুন্দর প্রোডাক্ট</p>
+                </div>
+                <span class="product-count" id="productCount">0 Products</span>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Products loaded from JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="paginationContainer"></div>
+        </div>
+    </section>
+
+    <!-- WHY JHUNJHUR + REVIEWS -->
+    <section class="trust-section" id="why-jhunjhur">
+        <div class="trust-container">
+            <div class="trust-heading">
+                <span class="section-kicker">WHY JHUNJHUR?</span>
+                <h2>সাজের সাথে থাকুক একটু ভরসাও।</h2>
+            </div>
+
+            <div class="trust-features">
+                <div class="trust-feature">
+                    <div class="trust-icon"><i class="fa-regular fa-gem"></i></div>
+                    <div>
+                        <h3>PREMIUM QUALITY</h3>
+                        <p>যত্নে বেছে নেওয়া প্রিমিয়াম কোয়ালিটির জুয়েলারি।</p>
+                    </div>
+                </div>
+                <div class="trust-feature">
+                    <div class="trust-icon"><i class="fa-solid fa-truck"></i></div>
+                    <div>
+                        <h3>SAFE DELIVERY</h3>
+                        <p>সারা দেশে নিরাপদ ও দ্রুত ডেলিভারি।</p>
+                    </div>
+                </div>
+                <div class="trust-feature">
+                    <div class="trust-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                    <div>
+                        <h3>EASY ORDERING</h3>
+                        <p>সহজে পছন্দ করুন, সহজেই অর্ডার করুন।</p>
+                    </div>
+                </div>
+                <div class="trust-feature">
+                    <div class="trust-icon"><i class="fa-regular fa-heart"></i></div>
+                    <div>
+                        <h3>CUSTOMER SUPPORT</h3>
+                        <p>প্রয়োজনে আমরা আছি, সবসময় আপনার পাশে।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="reviews-section">
+                <div class="reviews-heading">
+                    <span class="decor-line"></span>
+                    <h2>WHAT OUR CUSTOMERS SAY</h2>
+                    <span class="decor-line"></span>
+                </div>
+
+                <div class="reviews-slider">
+                    <button class="review-arrow review-prev" id="reviewPrev" type="button" aria-label="Previous review">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div class="reviews-track-wrapper">
+                        <div class="reviews-track" id="reviewsTrack">
+                            <!-- Reviews loaded from JavaScript -->
+                        </div>
+                    </div>
+
+                    <button class="review-arrow review-next" id="reviewNext" type="button" aria-label="Next review">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="review-dots" id="reviewDots"></div>
+            </div>
+        </div>
+
+        <!-- Social Strip -->
+        <div class="social-strip">
+            <div class="social-intro">
+                <span>FOLLOW JHUNJHUR</span>
+                <h3>নতুন সাজ, নতুন অনুপ্রেরণা</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <span>@jhunjhur.official</span>
+                </div>
+            </div>
+            <div class="social-gallery" id="socialGallery">
+                <!-- Social images from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <span class="section-kicker">A LITTLE ABOUT US</span>
+            <h2>একটু দেশি, <span>একটু আপন।</span></h2>
+            <p>
+                Jhunjhur-এর প্রতিটি কালেকশনে আমরা খুঁজি সেই ছোট্ট
+                দেশি ছোঁয়াটা—যেটা আপনার সাজকে করে তোলে আরও নিজের মতো।
+                প্রতিদিনের সাজ হোক কিংবা বিশেষ কোনো মুহূর্ত,
+                আপনার সাথে মানিয়ে যায় এমন সুন্দর কিছুই খুঁজে দিতে চাই আমরা।
+            </p>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <strong>500+</strong>
+                    <span>Happy Customers</span>
+                </div>
+                <div class="about-stat">
+                    <strong>100%</strong>
+                    <span>Handpicked Quality</span>
+                </div>
+                <div class="about-stat">
+                    <strong>24/7</strong>
+                    <span>Customer Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="site-footer" id="contact">
+    <div class="footer-main">
+        <div class="footer-brand">
+            <a href="#home" class="footer-logo">
+                <img src="assets/jhunjhur-logo.png" alt="Jhunjhur">
+                <span>Jhunjhur</span>
+            </a>
+            <p>দেশি ছোঁয়ায় আপনার সাজের ছোট্ট ছোট্ট সৌন্দর্য।</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>CATEGORIES</h3>
+            <a href="#shop">Bangles</a>
+            <a href="#shop">Earrings</a>
+            <a href="#shop">Pendants</a>
+            <a href="#shop">Rings</a>
+            <a href="#shop">Others</a>
+            <a href="#shop">Hair Accessories</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>POLICIES</h3>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="shipping.html">Shipping Policy</a>
+            <a href="returns.html">Returns Policy</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>GET IN TOUCH</h3>
+            <a href="tel:+8801000000000"><i class="fa-solid fa-phone"></i> +880 1XXX-XXXXXX</a>
+            <a href="mailto:hello@jhunjhur.com"><i class="fa-regular fa-envelope"></i> hello@jhunjhur.com</a>
+            <span><i class="fa-solid fa-location-dot"></i> Bangladesh</span>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Jhunjhur. All rights reserved.</span>
+        <span>Desi. Timeless. Yours.</span>
+    </div>
+</footer>
+
+<!-- =========================================================
+     MODALS & DRAWERS
+========================================================= -->
+
+<!-- Product Modal -->
+<div class="product-modal-overlay" id="productModal" aria-hidden="true">
+    <div class="product-modal" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modalClose" aria-label="Close product details">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-product-image">
+            <img id="modalProductImage" src="" alt="">
+            <button class="modal-wishlist-btn" id="modalWishlistBtn" aria-label="Add to wishlist">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        </div>
+        <div class="modal-product-info">
+            <span class="modal-category" id="modalProductCategory">BANGLES</span>
+            <h2 id="modalProductName">Product Name</h2>
+            <strong class="modal-price" id="modalProductPrice">৳450</strong>
+            <p class="modal-description" id="modalProductDescription">Product description</p>
+            <div class="modal-size-section" id="modalSizeSection">
+                <div class="modal-option-heading">
+                    <strong>Size (in inches)</strong>
+                    <span id="selectedSizeText">Select a size</span>
+                </div>
+                <div class="size-options" id="sizeOptions">
+                    <button type="button" class="size-btn" data-size="2.4">2.4</button>
+                    <button type="button" class="size-btn" data-size="2.6">2.6</button>
+                    <button type="button" class="size-btn" data-size="2.8">2.8</button>
+                    <button type="button" class="size-btn" data-size="2.10">2.10</button>
+                </div>
+            </div>
+            <div class="modal-quantity-section">
+                <strong>Quantity</strong>
+                <div class="quantity-control">
+                    <button type="button" id="modalQtyMinus">−</button>
+                    <span id="modalQty">1</span>
+                    <button type="button" id="modalQtyPlus">+</button>
+                </div>
+            </div>
+            <button type="button" class="modal-add-cart" id="modalAddCart">
+                <span>Add to Cart</span>
+                <i class="fa-solid fa-bag-shopping"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Search Modal -->
+<div class="search-modal-overlay" id="searchModal" aria-hidden="true">
+    <div class="search-modal">
+        <button class="modal-close" id="searchClose" aria-label="Close search">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="search-modal-content">
+            <div class="search-icon-wrap"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <h2>What are you looking for?</h2>
+            <p>Search our collection of desi jewellery & accessories</p>
+            <div class="search-input-wrap">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Type product name or category..." autofocus>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+            <div class="search-empty" id="searchEmpty">
+                <i class="fa-solid fa-search"></i>
+                <p>Start typing to see results</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Account Modal -->
+<div class="account-modal-overlay" id="accountModal" aria-hidden="true">
+    <div class="account-modal">
+        <button class="modal-close" id="accountClose" aria-label="Close account">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="account-modal-content">
+            <div class="account-icon"><i class="fa-regular fa-user"></i></div>
+            <h2>Account Feature</h2>
+            <p>We're working on something special for you!</p>
+            <div class="account-features">
+                <div class="account-feature"><i class="fa-regular fa-clock"></i><span>Order History</span></div>
+                <div class="account-feature"><i class="fa-regular fa-heart"></i><span>Saved Items</span></div>
+                <div class="account-feature"><i class="fa-regular fa-credit-card"></i><span>Easy Checkout</span></div>
+            </div>
+            <button class="account-notify-btn" id="accountNotifyBtn">
+                <i class="fa-regular fa-bell"></i> Notify Me When Ready
+            </button>
+            <p class="account-note">Coming soon! Stay tuned for updates.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Bag Drawer -->
+<div class="bag-overlay" id="bagOverlay" aria-hidden="true"></div>
+<aside class="bag-drawer" id="bagDrawer" aria-hidden="true">
+    <div class="bag-header">
+        <div>
+            <span>JHUNJHUR</span>
+            <h2>Your Bag</h2>
+        </div>
+        <button type="button" id="bagClose" aria-label="Close bag">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="bag-tabs">
+        <button type="button" class="bag-tab active" data-bag-view="cart">
+            Cart <span id="drawerCartCount">0</span>
+        </button>
+        <button type="button" class="bag-tab" data-bag-view="wishlist">
+            Wishlist <span id="drawerWishlistCount">0</span>
+        </button>
+    </div>
+    <div class="bag-content">
+        <div class="bag-view active" id="cartView">
+            <div class="bag-items" id="cartItems"></div>
+            <div class="empty-bag" id="emptyCart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <h3>Your cart is empty</h3>
+                <p>পছন্দের কিছু যোগ করুন, তারপর এখানে ফিরে আসুন।</p>
+                <button type="button" class="empty-action" id="continueShopping">Continue Shopping</button>
+            </div>
+        </div>
+        <div class="bag-view" id="wishlistView">
+            <div class="wishlist-items" id="wishlistItems"></div>
+            <div class="empty-bag" id="emptyWishlist">
+                <i class="fa-regular fa-heart"></i>
+                <h3>No favourites yet</h3>
+                <p>ভালো লাগা জিনিসগুলো এখানে রেখে দিন।</p>
+                <button type="button" class="empty-action" id="continueWishlistShopping">Explore Collection</button>
+            </div>
+        </div>
+    </div>
+    <div class="cart-summary" id="cartSummary">
+        <div>
+            <span>Subtotal</span>
+            <strong id="cartTotal">৳0</strong>
+        </div>
+        <small>Delivery charge will be calculated at checkout.</small>
+        <button type="button" class="checkout-btn" id="checkoutBtn">
+            Proceed to Order <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+</aside>
+
+<!-- Order Modal -->
+<div class="order-overlay" id="orderModal" aria-hidden="true">
+    <div class="order-modal">
+        <button type="button" class="modal-close" id="orderClose" aria-label="Close order form">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="order-heading">
+            <span>JHUNJHUR ORDER</span>
+            <h2>আপনার অর্ডারটি সম্পূর্ণ করুন</h2>
+            <p>আপনার তথ্য দিন, আমরা অর্ডারটি কনফার্ম করার জন্য যোগাযোগ করব।</p>
+        </div>
+        <form id="orderForm">
+            <div class="order-field">
+                <label for="customerName">আপনার নাম</label>
+                <input type="text" id="customerName" required placeholder="আপনার নাম লিখুন">
+            </div>
+            <div class="order-field">
+                <label for="customerPhone">মোবাইল নম্বর</label>
+                <input type="tel" id="customerPhone" required placeholder="01XXXXXXXXX">
+            </div>
+            <div class="order-field">
+                <label for="customerAddress">ডেলিভারি ঠিকানা</label>
+                <textarea id="customerAddress" rows="3" required placeholder="সম্পূর্ণ ঠিকানা লিখুন"></textarea>
+            </div>
+            <div class="order-total">
+                <span>Order Total</span>
+                <strong id="orderTotal">৳0</strong>
+            </div>
+            <button type="submit" class="place-order-btn">
+                Place Order <i class="fa-solid fa-check"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Order Success Modal -->
+<div class="order-success-overlay" id="orderSuccessModal" aria-hidden="true">
+    <div class="order-success-modal">
+        <div class="success-content">
+            <div class="success-icon"><i class="fa-solid fa-check-circle"></i></div>
+            <h2>🎉 Order Placed Successfully!</h2>
+            <p id="successMessage">Thank you! We will contact you shortly to confirm your order.</p>
+            <div class="success-details" id="successDetails"></div>
+            <button type="button" class="success-continue-btn" id="orderSuccessClose">
+                Continue Shopping <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- =========================================================
+     EXTERNAL JAVASCRIPT
+========================================================= -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
