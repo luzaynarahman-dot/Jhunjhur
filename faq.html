@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — Jhunjhur</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Galada&family=Montserrat:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* =========================================================
+           FAQ PAGE SPECIFIC
+        ========================================================= */
+        
+        .faq-page {
+            padding: 130px 6% 100px;
+            background: var(--cream);
+        }
+        
+        .faq-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 55px;
+        }
+        
+        .faq-header h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+        
+        .faq-header h1 span {
+            font-family: "Galada", cursive;
+            color: var(--gold);
+        }
+        
+        .faq-header p {
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 1rem;
+            color: #6c665b;
+            line-height: 1.8;
+        }
+        
+        .faq-search {
+            max-width: 550px;
+            margin: 25px auto 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 5px 25px rgba(48, 38, 23, 0.08);
+            border: 1px solid rgba(168, 117, 37, 0.12);
+        }
+        
+        .faq-search i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+        
+        .faq-search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.85rem;
+            color: var(--green);
+        }
+        
+        .faq-search input::placeholder {
+            color: #b0a694;
+        }
+        
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 45px;
+        }
+        
+        .faq-cat-btn {
+            padding: 8px 22px;
+            border-radius: 50px;
+            border: 1px solid rgba(168, 117, 37, 0.2);
+            background: transparent;
+            color: #6c665b;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: "Montserrat", sans-serif;
+        }
+        
+        .faq-cat-btn:hover,
+        .faq-cat-btn.active {
+            background: var(--gold);
+            color: white;
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(168, 117, 37, 0.25);
+        }
+        
+        .faq-grid {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 117, 37, 0.08);
+            box-shadow: 0 2px 15px rgba(48, 38, 23, 0.04);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 30px rgba(48, 38, 23, 0.08);
+        }
+        
+        .faq-question {
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            gap: 15px;
+        }
+        
+        .faq-question:hover {
+            background: rgba(168, 117, 37, 0.03);
+        }
+        
+        .faq-question .q-icon {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        
+        .faq-question h3 {
+            flex: 1;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+        
+        .faq-question .arrow {
+            color: var(--gold);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.open .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+        }
+        
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding: 0 25px 22px;
+        }
+        
+        .faq-answer p {
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #6c665b;
+        }
+        
+        .faq-answer ul {
+            margin: 8px 0 0 20px;
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #6c665b;
+        }
+        
+        .faq-answer ul li {
+            margin-bottom: 4px;
+        }
+        
+        .faq-no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+        
+        .faq-no-results i {
+            font-size: 3rem;
+            color: rgba(168, 117, 37, 0.3);
+            margin-bottom: 15px;
+        }
+        
+        .faq-no-results h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+        
+        .faq-no-results p {
+            font-family: "Noto Serif Bengali", serif;
+            color: #6c665b;
+        }
+        
+        .faq-contact {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(168, 117, 37, 0.06);
+            border-radius: 16px;
+            border: 1px solid rgba(168, 117, 37, 0.1);
+        }
+        
+        .faq-contact h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+        
+        .faq-contact p {
+            font-family: "Noto Serif Bengali", serif;
+            color: #6c665b;
+            margin-top: 5px;
+        }
+        
+        .faq-contact a {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 28px;
+            background: var(--green);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-contact a:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(168, 117, 37, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            .faq-page {
+                padding: 110px 5% 80px;
+            }
+            
+            .faq-question {
+                padding: 15px 18px;
+            }
+            
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+            
+            .faq-item.open .faq-answer {
+                padding: 0 18px 18px;
+            }
+            
+            .faq-contact {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVBAR (Same as index.html)
+========================================================= -->
+
+<header class="navbar" id="navbar">  
+    <div class="navbar-inner">  
+        <a href="index.html" class="brand" aria-label="Jhunjhur Home">  
+            <img src="assets/jhunjhur-logo.png" alt="Jhunjhur logo" class="brand-logo">  
+            <span class="brand-text">  
+                <strong>Jhunjhur</strong>  
+                <small>JEWELLERY & ACCESSORIES</small>  
+            </span>  
+        </a>  
+
+        <nav class="nav-links" id="navLinks">  
+            <a href="index.html">Home</a>  
+            <a href="index.html#shop">Shop</a>  
+            <a href="index.html#categories">Categories</a>  
+            <a href="index.html#why-jhunjhur">Why Jhunjhur</a>  
+            <a href="about.html">About</a>  
+            <a href="index.html#contact">Contact</a>  
+
+            <div class="mobile-nav-actions">  
+                <button type="button" class="mobile-action-btn" id="mobileSearchBtn">  
+                    <i class="fa-solid fa-magnifying-glass"></i>  
+                    <span>Search</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileAccountBtn">  
+                    <i class="fa-regular fa-user"></i>  
+                    <span>Account</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileCartBtn">  
+                    <i class="fa-solid fa-bag-shopping"></i>  
+                    <span>Cart</span>  
+                    <b id="mobileCartCount">0</b>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileWishlistBtn">  
+                    <i class="fa-regular fa-heart"></i>  
+                    <span>Wishlist</span>  
+                    <b id="mobileWishlistCount">0</b>  
+                </button>  
+            </div>  
+        </nav>  
+
+        <div class="nav-actions">  
+            <button type="button" aria-label="Search" id="searchBtn">  
+                <i class="fa-solid fa-magnifying-glass"></i>  
+            </button>  
+            <button type="button" aria-label="Account" id="accountBtn">  
+                <i class="fa-regular fa-user"></i>  
+            </button>  
+            <button type="button" class="bag-btn" id="bagBtn" aria-label="Shopping bag">  
+                <i class="fa-solid fa-bag-shopping"></i>  
+                <span class="bag-count" id="bagCount">0</span>  
+            </button>  
+        </div>  
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">  
+            <i class="fa-solid fa-bars"></i>  
+        </button>  
+    </div>  
+</header>  
+
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- =========================================================
+     FAQ PAGE CONTENT
+========================================================= -->
+
+<section class="faq-page">
+
+    <div class="faq-header">
+        <span class="section-kicker">GOT QUESTIONS?</span>
+        <h1>আমাদের কাছে <span>জানুন</span></h1>
+        <p>আপনার মনের সব প্রশ্নের উত্তর পেতে আমাদের FAQ সেকশনটি দেখুন।</p>
+        
+        <div class="faq-search">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="faqSearchInput" placeholder="প্রশ্ন খুঁজুন...">
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="faq-categories" id="faqCategories">
+        <button class="faq-cat-btn active" data-category="all">সবগুলো</button>
+        <button class="faq-cat-btn" data-category="orders">অর্ডার</button>
+        <button class="faq-cat-btn" data-category="shipping">ডেলিভারি</button>
+        <button class="faq-cat-btn" data-category="products">প্রোডাক্ট</button>
+        <button class="faq-cat-btn" data-category="payment">পেমেন্ট</button>
+        <button class="faq-cat-btn" data-category="returns">রিটার্ন</button>
+    </div>
+
+    <!-- FAQ List -->
+    <div class="faq-grid" id="faqGrid">
+
+        <!-- Category: Orders -->
+        <div class="faq-item" data-category="orders">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>কিভাবে অর্ডার করব?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>আপনি খুব সহজেই আমাদের ওয়েবসাইট থেকে অর্ডার করতে পারেন। নিচের ধাপগুলো অনুসরণ করুন:</p>
+                <ul>
+                    <li>পছন্দের প্রোডাক্টটি সিলেক্ট করুন</li>
+                    <li>"Add to Cart" বাটনে ক্লিক করুন</li>
+                    <li>কার্টে গিয়ে অর্ডার কনফার্ম করুন</li>
+                    <li>আপনার নাম, ঠিকানা ও ফোন নম্বর দিন</li>
+                    <li>"Place Order" বাটনে ক্লিক করুন</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="orders">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>অর্ডার কনফার্মেশন পাব কিভাবে?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>অর্ডার সম্পন্ন হওয়ার পর আমরা আপনার ফোন নম্বরে এসএমএস এবং ইমেইলে কনফার্মেশন পাঠাব। এছাড়াও আমাদের ওয়েবসাইটের অর্ডার হিস্টোরি থেকেও দেখতে পাবেন।</p>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="orders">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>অর্ডার পরিবর্তন বা বাতিল করতে পারি?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>হ্যাঁ, অর্ডার ডেলিভারির আগ পর্যন্ত আপনি অর্ডার পরিবর্তন বা বাতিল করতে পারবেন। আমাদের কাস্টমার সার্ভিসে যোগাযোগ করুন: <strong>+880 1XXX-XXXXXX</strong></p>
+            </div>
+        </div>
+
+        <!-- Category: Shipping -->
+        <div class="faq-item" data-category="shipping">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>ডেলিভারি চার্জ কত?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>সারা বাংলাদেশে ডেলিভারি চার্জ <strong>৳৬০</strong>। তবে ৳২০০০ এর বেশি অর্ডারে ডেলিভারি চার্জ <strong>ফ্রি</strong>।</p>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="shipping">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>কত দিনে পণ্য পাব?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>অর্ডার কনফার্ম হওয়ার ২-৩ কার্যদিবসের মধ্যে আপনার ঠিকানায় পণ্য পৌঁছে দেওয়া হবে। ঢাকার বাইরে ৩-৫ দিন সময় লাগতে পারে।</p>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="shipping">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>ডেলিভারি ট্র্যাক করতে পারি?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>হ্যাঁ, অর্ডার ডিসপ্যাচ হওয়ার পর আমরা আপনার মোবাইলে ট্র্যাকিং নম্বর পাঠাব। আমাদের ওয়েবসাইটের অর্ডার ট্র্যাকিং পেজ থেকেও ট্র্যাক করতে পারবেন।</p>
+            </div>
+        </div>
+
+        <!-- Category: Products -->
+        <div class="faq-item" data-category="products">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>প্রোডাক্টের কোয়ালিটি কেমন?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>আমরা সব প্রোডাক্ট হাতে বাছাই করি এবং প্রিমিয়াম কোয়ালিটির জিনিসপত্র বিক্রি করি। প্রতিটি প্রোডাক্ট আমাদের কঠোর মান নিয়ন্ত্রণের মাধ্যমে যাচাই করা হয়।</p>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="products">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>প্রোডাক্টের সাইজ কীভাবে বুঝব?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>প্রতিটি প্রোডাক্টের পেজে সাইজের বিবরণ দেওয়া আছে। চুড়ি ও রিংয়ের জন্য নির্দিষ্ট সাইজ (২.৪, ২.৬, ২.৮, ২.১০) দেওয়া আছে। প্রয়োজনে আমাদের কাস্টমার সার্ভিসে যোগাযোগ করুন।</p>
+            </div>
+        </div>
+
+        <!-- Category: Payment -->
+        <div class="faq-item" data-category="payment">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>কোন পদ্ধতিতে পেমেন্ট করতে পারি?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>আমরা নিচের পেমেন্ট পদ্ধতিগুলো গ্রহণ করি:</p>
+                <ul>
+                    <li><strong>bKash</strong> — Mobile Banking</li>
+                    <li><strong>Nagad</strong> — Mobile Banking</li>
+                    <li><strong>Rocket</strong> — Mobile Banking</li>
+                    <li><strong>Cash on Delivery</strong> — ডেলিভারি সময় নগদ টাকা</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="payment">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>bKash/Nagad/Rocket দিয়ে কীভাবে পেমেন্ট করব?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>অর্ডার প্লেস করার পর আপনি পেমেন্ট অপশন সিলেক্ট করবেন। আমাদের মোবাইল নম্বরে টাকা পাঠিয়ে স্ক্রিনশট পাঠালে অর্ডার প্রসেস করা হবে। অথবা অ্যাপের মাধ্যমে সরাসরি পেমেন্ট করতে পারেন।</p>
+            </div>
+        </div>
+
+        <!-- Category: Returns -->
+        <div class="faq-item" data-category="returns">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>প্রোডাক্ট ফেরত দিতে পারি?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>হ্যাঁ, পণ্য প্রাপ্তির ৭ দিনের মধ্যে আপনি ফেরত দিতে পারবেন। তবে শর্ত হলো পণ্যটি অক্ষত ও ব্যবহার না করা থাকতে হবে। বিস্তারিত জানতে আমাদের <a href="returns.html">রিটার্ন পলিসি</a> পড়ুন।</p>
+            </div>
+        </div>
+
+        <div class="faq-item" data-category="returns">
+            <div class="faq-question">
+                <span class="q-icon">Q.</span>
+                <h3>ভাঙ্গা বা ত্রুটিযুক্ত প্রোডাক্ট পেলে কী করব?</h3>
+                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>অর্ডার প্রাপ্তির ২৪ ঘন্টার মধ্যে আমাদের কাস্টমার সার্ভিসে যোগাযোগ করুন। আমরা ত্রুটিযুক্ত প্রোডাক্টের জন্য নতুন প্রোডাক্ট পাঠাব অথবা টাকা ফেরত দেব।</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- No Results -->
+    <div class="faq-no-results" id="faqNoResults">
+        <i class="fa-solid fa-search"></i>
+        <h3>কোন প্রশ্ন খুঁজে পাওয়া যায়নি</h3>
+        <p>আপনার প্রশ্নটি আমাদের ইমেইল বা ফোনে জানাতে পারেন।</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="faq-contact">
+        <h3>🤔 এখনও প্রশ্ন আছে?</h3>
+        <p>আমাদের সাথে যোগাযোগ করুন, আমরা সাহায্য করতে প্রস্তুত।</p>
+        <a href="index.html#contact">Contact Us</a>
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FOOTER (Same as index.html)
+========================================================= -->
+
+<footer class="site-footer" id="contact">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="footer-logo">
+                <img src="assets/jhunjhur-logo.png" alt="Jhunjhur">
+                <span>Jhunjhur</span>
+            </a>
+
+            <p>দেশি ছোঁয়ায় আপনার সাজের ছোট্ট ছোট্ট সৌন্দর্য।</p>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+
+        </div>
+
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>POLICIES</h3>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="shipping.html">Shipping Policy</a>
+            <a href="returns.html">Returns Policy</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>GET IN TOUCH</h3>
+            <a href="tel:+8801000000000"><i class="fa-solid fa-phone"></i> +880 1XXX-XXXXXX</a>
+            <a href="mailto:hello@jhunjhur.com"><i class="fa-regular fa-envelope"></i> hello@jhunjhur.com</a>
+            <span><i class="fa-solid fa-location-dot"></i> Bangladesh</span>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Jhunjhur. All rights reserved.</span>
+        <span>Desi. Timeless. Yours.</span>
+    </div>
+
+</footer>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+<script>
+    // FAQ Search & Filter
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('faqSearchInput');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const categoryBtns = document.querySelectorAll('.faq-cat-btn');
+        const noResults = document.getElementById('faqNoResults');
+        let currentCategory = 'all';
+
+        // Category filter
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+                applyFilters();
+            });
+        });
+
+        // Search filter
+        searchInput.addEventListener('input', applyFilters);
+
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            faqItems.forEach(item => {
+                const category = item.dataset.category;
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p')?.textContent.toLowerCase() || '';
+
+                const matchesCategory = currentCategory === 'all' || category === currentCategory;
+                const matchesSearch = !searchTerm || question.includes(searchTerm) || answer.includes(searchTerm);
+
+                if (matchesCategory && matchesSearch) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Accordion toggle
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', function() {
+                // Close other items
+                faqItems.forEach(other => {
+                    if (other !== item && other.classList.contains('open')) {
+                        other.classList.remove('open');
+                    }
+                });
+                item.classList.toggle('open');
+            });
+        });
+
+        // Open first item by default
+        if (faqItems.length > 0) {
+            faqItems[0].classList.add('open');
+        }
+    });
+</script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
