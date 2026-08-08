@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhunjhur Admin — Orders</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <style>
+        /* =========================================================
+           ORDERS PAGE SPECIFIC
+        ========================================================= */
+        
+        .orders-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .orders-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            padding: 10px 22px;
+            border-radius: 6px;
+            background: var(--admin-green);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--admin-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(168, 117, 37, 0.3);
+        }
+        
+        .btn-sm {
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        
+        .btn-success {
+            background: rgba(39, 174, 96, 0.12);
+            color: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: rgba(241, 196, 15, 0.12);
+            color: #f39c12;
+        }
+        
+        .btn-warning:hover {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .btn-danger-sm {
+            background: rgba(231, 76, 60, 0.12);
+            color: #e74c3c;
+        }
+        
+        .btn-danger-sm:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border: 1px solid var(--admin-border);
+            border-radius: 6px;
+            background: var(--admin-white);
+            min-width: 220px;
+        }
+        
+        .search-box i {
+            color: var(--admin-text-light);
+            font-size: 0.8rem;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.75rem;
+            color: var(--admin-text);
+            width: 100%;
+        }
+        
+        .filter-select {
+            padding: 8px 14px;
+            border: 1px solid var(--admin-border);
+            border-radius: 6px;
+            background: var(--admin-white);
+            font-size: 0.7rem;
+            color: var(--admin-text);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .order-detail-row {
+            display: none;
+            background: rgba(247, 238, 225, 0.4);
+        }
+        
+        .order-detail-row.open {
+            display: table-row;
+        }
+        
+        .order-detail-cell {
+            padding: 20px 25px !important;
+        }
+        
+        .order-items-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--admin-border);
+        }
+        
+        .order-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        
+        .order-item-info {
+            flex: 1;
+        }
+        
+        .order-item-info strong {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--admin-text);
+        }
+        
+        .order-item-info small {
+            font-size: 0.6rem;
+            color: var(--admin-text-light);
+        }
+        
+        .order-item-price {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--admin-gold);
+        }
+        
+        .order-total-detail {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--admin-border);
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--admin-green);
+        }
+        
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .status.delivered { background: rgba(39, 174, 96, 0.12); color: #27ae60; }
+        .status.processing { background: rgba(241, 196, 15, 0.12); color: #f39c12; }
+        .status.pending { background: rgba(52, 152, 219, 0.12); color: #2980b9; }
+        .status.cancelled { background: rgba(231, 76, 60, 0.12); color: #e74c3c; }
+        
+        .expand-btn {
+            color: var(--admin-text-light);
+            transition: transform 0.25s ease;
+        }
+        
+        .expand-btn:hover {
+            color: var(--admin-gold);
+        }
+        
+        .expand-btn.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .order-id-link {
+            font-weight: 600;
+            color: var(--admin-gold);
+            cursor: pointer;
+        }
+        
+        .order-id-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .orders-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .orders-actions {
+                flex-wrap: wrap;
+            }
+            
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .filter-select {
+                flex: 1;
+            }
+            
+            .order-items-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-table {
+                font-size: 0.6rem;
+            }
+            
+            .admin-table th,
+            .admin-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">
+            <img src="../assets/jhunjhur-logo.png" alt="Jhunjhur">
+            <span>Jhunjhur</span>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="products.html">
+                <i class="fa-solid fa-gem"></i>
+                <span>Products</span>
+                <span class="badge" id="productBadge">14</span>
+            </a>
+            <a href="orders.html" class="active">
+                <i class="fa-solid fa-truck"></i>
+                <span>Orders</span>
+                <span class="badge" id="orderBadge">0</span>
+            </a>
+            <a href="customers.html">
+                <i class="fa-regular fa-user"></i>
+                <span>Customers</span>
+                <span class="badge" id="customerBadge">0</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+                <span class="badge" id="wishlistBadge">0</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-star"></i>
+                <span>Reviews</span>
+                <span class="badge">8</span>
+            </a>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../index.html" target="_blank">
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+            <a href="#" id="adminLogout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1>Orders</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <button class="header-btn" title="Messages">
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
+                <div class="admin-profile">
+                    <img src="../assets/admin-avatar.jpg" alt="Admin">
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ORDERS TOOLBAR -->
+        <div class="orders-toolbar">
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search orders by ID or customer..." id="orderSearch">
+            </div>
+            <div class="orders-actions">
+                <select class="filter-select" id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+                <select class="filter-select" id="dateFilter">
+                    <option value="all">All Time</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+                <button class="btn-primary" id="refreshOrders">
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <!-- ORDERS TABLE -->
+        <section class="recent-section">
+            <div class="section-header">
+                <h3>All Orders</h3>
+                <span style="font-size:0.7rem; color: var(--admin-text-light);" id="orderCount">0 orders</span>
+            </div>
+
+            <div class="table-wrap">
+                <table class="admin-table" id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th style="width:30px;"></th>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                        <!-- Orders loaded from localStorage -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="emptyOrders" style="display:none; text-align:center; padding:60px 20px;">
+                <i class="fa-solid fa-truck" style="font-size:3rem; color:var(--admin-border);"></i>
+                <h3 style="margin-top:15px; font-family:'Cormorant Garamond',serif;">No Orders Yet</h3>
+                <p style="color:var(--admin-text-light); font-size:0.8rem;">Orders from the website will appear here.</p>
+                <a href="../index.html#shop" target="_blank" class="btn-primary" style="margin-top:15px; display:inline-flex;">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Go to Shop
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+<script>
+// =========================================================
+// ORDERS DATA
+// =========================================================
+
+// Get orders from localStorage (from main site)
+function getOrders() {
+    const stored = localStorage.getItem('jhunjhurOrders');
+    if (stored) {
+        try {
+            return JSON.parse(stored);
+        } catch(e) {
+            // fallback to demo data
+        }
+    }
+    
+    // Demo orders (if no real orders exist)
+    return [
+        {
+            id: 'ORD-001',
+            customer: 'Sohana Islam',
+            phone: '01712345678',
+            address: 'Mirpur, Dhaka',
+            items: [
+                { name: 'Desi Churi Set', quantity: 1, price: 450 },
+                { name: 'Golden Jhumka', quantity: 2, price: 350 }
+            ],
+            total: 1150,
+            status: 'delivered',
+            date: '2026-01-15T14:30:00'
+        },
+        {
+            id: 'ORD-002',
+            customer: 'Farhana Mim',
+            phone: '01812345678',
+            address: 'Banani, Dhaka',
+            items: [
+                { name: 'Pearl Churi Set', quantity: 1, price: 520 },
+                { name: 'Antique Tikli', quantity: 1, price: 350 }
+            ],
+            total: 870,
+            status: 'processing',
+            date: '2026-01-16T11:15:00'
+        },
+        {
+            id: 'ORD-003',
+            customer: 'Nusrat Jahan',
+            phone: '01912345678',
+            address: 'Uttara, Dhaka',
+            items: [
+                { name: 'Floral Pendant', quantity: 1, price: 620 },
+                { name: 'Classic Gold Ring', quantity: 1, price: 390 },
+                { name: 'Desi Hair Band', quantity: 1, price: 250 }
+            ],
+            total: 1260,
+            status: 'pending',
+            date: '2026-01-14T18:45:00'
+        }
+    ];
+}
+
+// Save order to localStorage (from admin)
+function saveOrders(orders) {
+    localStorage.setItem('jhunjhurOrders', JSON.stringify(orders));
+}
+
+// Update order status
+function updateOrderStatus(orderId, newStatus) {
+    let orders = getOrders();
+    const order = orders.find(o => o.id === orderId);
+    if (order) {
+        order.status = newStatus;
+        saveOrders(orders);
+        renderOrders(orders);
+        updateBadges();
+    }
+}
+
+// Delete order
+function deleteOrder(orderId) {
+    if (!confirm('Are you sure you want to delete this order?')) return;
+    let orders = getOrders();
+    orders = orders.filter(o => o.id !== orderId);
+    saveOrders(orders);
+    renderOrders(orders);
+    updateBadges();
+}
+
+// =========================================================
+// RENDER ORDERS
+// =========================================================
+
+function renderOrders(orders) {
+    const tbody = document.getElementById('ordersBody');
+    const empty = document.getElementById('emptyOrders');
+    const count = document.getElementById('orderCount');
+    
+    if (!orders || orders.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        count.textContent = '0 orders';
+        return;
+    }
+    
+    empty.style.display = 'none';
+    count.textContent = `${orders.length} orders`;
+    
+    tbody.innerHTML = '';
+    
+    orders.forEach((order, index) => {
+        const statusClass = order.status || 'pending';
+        const date = new Date(order.date);
+        const dateStr = date.toLocaleDateString('en-BD', { 
+            day: '2-digit', 
+            month: 'short', 
+            year: 'numeric' 
+        });
+        const timeStr = date.toLocaleTimeString('en-BD', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <button class="expand-btn" data-order="${order.id}" aria-label="Expand order">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+            </td>
+            <td><span class="order-id-link" data-order="${order.id}">#${order.id}</span></td>
+            <td><strong>${order.customer}</strong><br><small style="color:var(--admin-text-light);">${order.phone}</small></td>
+            <td>${order.items.length} items</td>
+            <td>৳${order.total.toLocaleString()}</td>
+            <td>
+                <select class="status ${statusClass}" data-order="${order.id}" onchange="updateOrderStatus('${order.id}', this.value)">
+                    <option value="pending" ${statusClass === 'pending' ? 'selected' : ''}>Pending</option>
+                    <option value="processing" ${statusClass === 'processing' ? 'selected' : ''}>Processing</option>
+                    <option value="delivered" ${statusClass === 'delivered' ? 'selected' : ''}>Delivered</option>
+                    <option value="cancelled" ${statusClass === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                </select>
+            </td>
+            <td>${dateStr}<br><small style="color:var(--admin-text-light);">${timeStr}</small></td>
+            <td>
+                <button class="btn-sm btn-danger-sm" onclick="deleteOrder('${order.id}')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(row);
+        
+        // Detail row (hidden initially)
+        const detailRow = document.createElement('tr');
+        detailRow.className = 'order-detail-row';
+        detailRow.id = `detail-${order.id}`;
+        
+        let itemsHtml = order.items.map(item => `
+            <div class="order-item">
+                <div class="order-item-info">
+                    <strong>${item.name}</strong>
+                    <small>× ${item.quantity}</small>
+                </div>
+                <span class="order-item-price">৳${(item.price * item.quantity).toLocaleString()}</span>
+            </div>
+        `).join('');
+        
+        detailRow.innerHTML = `
+            <td colspan="8">
+                <div class="order-detail-cell">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:15px;">
+                        <div>
+                            <strong style="font-size:0.7rem; color:var(--admin-text-light);">DELIVERY ADDRESS</strong>
+                            <p style="font-size:0.85rem; margin-top:4px;">${order.address}</p>
+                        </div>
+                        <div>
+                            <strong style="font-size:0.7rem; color:var(--admin-text-light);">CONTACT</strong>
+                            <p style="font-size:0.85rem; margin-top:4px;">${order.phone}</p>
+                        </div>
+                    </div>
+                    <strong style="font-size:0.7rem; color:var(--admin-text-light);">ORDER ITEMS</strong>
+                    <div class="order-items-list">
+                        ${itemsHtml}
+                    </div>
+                    <div class="order-total-detail">
+                        <span>Total</span>
+                        <span>৳${order.total.toLocaleString()}</span>
+                    </div>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(detailRow);
+    });
+    
+    // Expand/Collapse events
+    document.querySelectorAll('.expand-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const orderId = this.dataset.order;
+            const detailRow = document.getElementById(`detail-${orderId}`);
+            if (detailRow) {
+                detailRow.classList.toggle('open');
+                this.classList.toggle('rotated');
+            }
+        });
+    });
+    
+    // Click on order ID to expand
+    document.querySelectorAll('.order-id-link').forEach(el => {
+        el.addEventListener('click', function() {
+            const orderId = this.dataset.order;
+            const btn = document.querySelector(`.expand-btn[data-order="${orderId}"]`);
+            if (btn) btn.click();
+        });
+    });
+}
+
+// =========================================================
+// FILTER ORDERS
+// =========================================================
+
+function filterOrders() {
+    const search = document.getElementById('orderSearch')?.value.toLowerCase() || '';
+    const status = document.getElementById('statusFilter')?.value || 'all';
+    const dateRange = document.getElementById('dateFilter')?.value || 'all';
+    
+    let orders = getOrders();
+    
+    // Search
+    if (search) {
+        orders = orders.filter(o => 
+            o.id.toLowerCase().includes(search) || 
+            o.customer.toLowerCase().includes(search) ||
+            o.phone.includes(search)
+        );
+    }
+    
+    // Status filter
+    if (status !== 'all') {
+        orders = orders.filter(o => o.status === status);
+    }
+    
+    // Date filter
+    if (dateRange !== 'all') {
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        
+        orders = orders.filter(o => {
+            const orderDate = new Date(o.date);
+            if (dateRange === 'today') {
+                return orderDate >= today;
+            } else if (dateRange === 'week') {
+                const weekAgo = new Date(today);
+                weekAgo.setDate(weekAgo.getDate() - 7);
+                return orderDate >= weekAgo;
+            } else if (dateRange === 'month') {
+                const monthAgo = new Date(today);
+                monthAgo.setMonth(monthAgo.getMonth() - 1);
+                return orderDate >= monthAgo;
+            }
+            return true;
+        });
+    }
+    
+    renderOrders(orders);
+}
+
+// =========================================================
+// BADGE UPDATES
+// =========================================================
+
+function updateBadges() {
+    const orders = getOrders();
+    document.getElementById('orderBadge').textContent = orders.length;
+    
+    // Get unique customers
+    const customers = [...new Set(orders.map(o => o.customer))];
+    document.getElementById('customerBadge').textContent = customers.length;
+    
+    // Wishlist from localStorage
+    const wishlist = JSON.parse(localStorage.getItem('jhunjhurWishlist')) || [];
+    document.getElementById('wishlistBadge').textContent = wishlist.length;
+}
+
+// =========================================================
+// INITIALIZE
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const orders = getOrders();
+    renderOrders(orders);
+    updateBadges();
+    
+    // Event listeners for filters
+    document.getElementById('orderSearch')?.addEventListener('input', filterOrders);
+    document.getElementById('statusFilter')?.addEventListener('change', filterOrders);
+    document.getElementById('dateFilter')?.addEventListener('change', filterOrders);
+    
+    // Refresh button
+    document.getElementById('refreshOrders')?.addEventListener('click', function() {
+        filterOrders();
+        updateBadges();
+        this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Refreshing...';
+        setTimeout(() => {
+            this.innerHTML = '<i class="fa-solid fa-rotate"></i> Refresh';
+        }, 800);
+    });
+});
+
+// Make functions global for onclick
+window.updateOrderStatus = updateOrderStatus;
+window.deleteOrder = deleteOrder;
+</script>
+
+</body>
+</html>
