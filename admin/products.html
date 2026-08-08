@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhunjhur Admin — Products</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <style>
+        /* =========================================================
+           PRODUCTS PAGE SPECIFIC
+        ========================================================= */
+        
+        .products-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .products-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            padding: 10px 22px;
+            border-radius: 6px;
+            background: var(--admin-green);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--admin-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(168, 117, 37, 0.3);
+        }
+        
+        .btn-danger {
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: rgba(231, 76, 60, 0.12);
+            color: #e74c3c;
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        
+        .btn-danger:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-edit {
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: rgba(52, 152, 219, 0.12);
+            color: #2980b9;
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        
+        .btn-edit:hover {
+            background: #2980b9;
+            color: white;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border: 1px solid var(--admin-border);
+            border-radius: 6px;
+            background: var(--admin-white);
+            min-width: 240px;
+        }
+        
+        .search-box i {
+            color: var(--admin-text-light);
+            font-size: 0.8rem;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.75rem;
+            color: var(--admin-text);
+            width: 100%;
+        }
+        
+        .product-image-cell {
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: #eee2d0;
+        }
+        
+        .stock-badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.55rem;
+            font-weight: 600;
+        }
+        
+        .stock-badge.in-stock {
+            background: rgba(39, 174, 96, 0.12);
+            color: #27ae60;
+        }
+        
+        .stock-badge.low-stock {
+            background: rgba(241, 196, 15, 0.12);
+            color: #f39c12;
+        }
+        
+        .stock-badge.out-stock {
+            background: rgba(231, 76, 60, 0.12);
+            color: #e74c3c;
+        }
+        
+        .filter-select {
+            padding: 8px 14px;
+            border: 1px solid var(--admin-border);
+            border-radius: 6px;
+            background: var(--admin-white);
+            font-size: 0.7rem;
+            color: var(--admin-text);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .products-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .products-actions {
+                flex-wrap: wrap;
+            }
+            
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .filter-select {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+
+    <!-- SIDEBAR (same as dashboard) -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">
+            <img src="../assets/jhunjhur-logo.png" alt="Jhunjhur">
+            <span>Jhunjhur</span>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="products.html" class="active">
+                <i class="fa-solid fa-gem"></i>
+                <span>Products</span>
+                <span class="badge">14</span>
+            </a>
+            <a href="orders.html">
+                <i class="fa-solid fa-truck"></i>
+                <span>Orders</span>
+                <span class="badge">3</span>
+            </a>
+            <a href="customers.html">
+                <i class="fa-regular fa-user"></i>
+                <span>Customers</span>
+                <span class="badge">27</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+                <span class="badge">12</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-star"></i>
+                <span>Reviews</span>
+                <span class="badge">8</span>
+            </a>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../index.html" target="_blank">
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+            <a href="#" id="adminLogout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1>Products</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <button class="header-btn" title="Messages">
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
+                <div class="admin-profile">
+                    <img src="../assets/admin-avatar.jpg" alt="Admin">
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- PRODUCTS TOOLBAR -->
+        <div class="products-toolbar">
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search products..." id="productSearch">
+            </div>
+            <div class="products-actions">
+                <select class="filter-select" id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="bangles">Bangles</option>
+                    <option value="earrings">Earrings</option>
+                    <option value="pendants">Pendants</option>
+                    <option value="rings">Rings</option>
+                    <option value="tikli">Tikli</option>
+                    <option value="hair">Hair Accessories</option>
+                </select>
+                <select class="filter-select" id="stockFilter">
+                    <option value="all">All Stock</option>
+                    <option value="in-stock">In Stock</option>
+                    <option value="low-stock">Low Stock</option>
+                    <option value="out-stock">Out of Stock</option>
+                </select>
+                <button class="btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Product
+                </button>
+            </div>
+        </div>
+
+        <!-- PRODUCTS TABLE -->
+        <section class="recent-section">
+            <div class="section-header">
+                <h3>All Products</h3>
+                <span style="font-size:0.7rem; color: var(--admin-text-light);">14 products</span>
+            </div>
+
+            <div class="table-wrap">
+                <table class="admin-table" id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Products will be loaded from localStorage or API -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+<script src="js/admin.js"></script>
+
+<script>
+// =========================================================
+// PRODUCTS DATA (from localStorage or default)
+// =========================================================
+
+// Get products from main website's localStorage
+function getProducts() {
+    // Try to get from localStorage (if products were added from main site)
+    const stored = localStorage.getItem('jhunjhurProducts');
+    if (stored) {
+        try {
+            return JSON.parse(stored);
+        } catch(e) {
+            // fallback to default
+        }
+    }
+    
+    // Default products (same as main site)
+    return [
+        { id: 'bangles-1', name: 'Desi Churi Set', category: 'bangles', price: 450, stock: 12, image: '../assets/bangles1.jpg' },
+        { id: 'bangles-2', name: 'Golden Churi Set', category: 'bangles', price: 480, stock: 8, image: '../assets/bangles2.jpg' },
+        { id: 'bangles-3', name: 'Pearl Churi Set', category: 'bangles', price: 520, stock: 15, image: '../assets/bangles3.jpg' },
+        { id: 'bangles-4', name: 'Traditional Churi', category: 'bangles', price: 390, stock: 3, image: '../assets/bangles4.jpg' },
+        { id: 'earrings-1', name: 'Golden Jhumka', category: 'earrings', price: 350, stock: 20, image: '../assets/earrings1.jpg' },
+        { id: 'earrings-2', name: 'Pearl Drop Earrings', category: 'earrings', price: 420, stock: 6, image: '../assets/earrings2.jpg' },
+        { id: 'earrings-3', name: 'Desi Floral Earrings', category: 'earrings', price: 380, stock: 10, image: '../assets/earrings3.jpg' },
+        { id: 'pendants-1', name: 'Classic Gold Pendant', category: 'pendants', price: 550, stock: 4, image: '../assets/pendants1.jpg' },
+        { id: 'pendants-2', name: 'Floral Pendant', category: 'pendants', price: 620, stock: 7, image: '../assets/pendants2.jpg' },
+        { id: 'rings-1', name: 'Floral Pearl Ring', category: 'rings', price: 450, stock: 9, image: '../assets/rings1.jpg' },
+        { id: 'rings-2', name: 'Classic Gold Ring', category: 'rings', price: 390, stock: 11, image: '../assets/rings2.jpg' },
+        { id: 'tikli-1', name: 'Antique Tikli', category: 'tikli', price: 350, stock: 5, image: '../assets/tikli1.jpg' },
+        { id: 'tikli-2', name: 'Golden Floral Tikli', category: 'tikli', price: 320, stock: 14, image: '../assets/tikli2.jpg' },
+        { id: 'hair-1', name: 'Floral Hair Clip', category: 'hair', price: 280, stock: 18, image: '../assets/hair1.jpg' },
+        { id: 'hair-2', name: 'Desi Hair Band', category: 'hair', price: 250, stock: 2, image: '../assets/hair2.jpg' },
+    ];
+}
+
+// Render products table
+function renderProducts(products) {
+    const tbody = document.querySelector('#productsTable tbody');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    
+    products.forEach(product => {
+        const stockStatus = product.stock > 10 ? 'in-stock' : (product.stock > 0 ? 'low-stock' : 'out-stock');
+        const stockLabel = product.stock > 10 ? 'In Stock' : (product.stock > 0 ? 'Low Stock' : 'Out of Stock');
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><img src="${product.image}" alt="${product.name}" class="product-image-cell"></td>
+            <td><strong>${product.name}</strong></td>
+            <td><span style="text-transform:uppercase; font-size:0.6rem; color:var(--admin-gold);">${product.category}</span></td>
+            <td>৳${product.price.toLocaleString()}</td>
+            <td><span class="stock-badge ${stockStatus}">${stockLabel} (${product.stock})</span></td>
+            <td>
+                <button class="btn-edit" data-id="${product.id}">Edit</button>
+                <button class="btn-danger" data-id="${product.id}">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+// Filter products
+function filterProducts() {
+    const search = document.getElementById('productSearch')?.value.toLowerCase() || '';
+    const category = document.getElementById('categoryFilter')?.value || 'all';
+    const stock = document.getElementById('stockFilter')?.value || 'all';
+    
+    let products = getProducts();
+    
+    if (search) {
+        products = products.filter(p => p.name.toLowerCase().includes(search));
+    }
+    
+    if (category !== 'all') {
+        products = products.filter(p => p.category === category);
+    }
+    
+    if (stock === 'in-stock') {
+        products = products.filter(p => p.stock > 10);
+    } else if (stock === 'low-stock') {
+        products = products.filter(p => p.stock > 0 && p.stock <= 10);
+    } else if (stock === 'out-stock') {
+        products = products.filter(p => p.stock <= 0);
+    }
+    
+    renderProducts(products);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    renderProducts(getProducts());
+    
+    // Event listeners for filters
+    document.getElementById('productSearch')?.addEventListener('input', filterProducts);
+    document.getElementById('categoryFilter')?.addEventListener('change', filterProducts);
+    document.getElementById('stockFilter')?.addEventListener('change', filterProducts);
+    
+    // Delete product
+    document.querySelector('#productsTable tbody')?.addEventListener('click', function(e) {
+        const deleteBtn = e.target.closest('.btn-danger');
+        if (deleteBtn) {
+            const id = deleteBtn.dataset.id;
+            if (confirm(`Are you sure you want to delete this product?`)) {
+                let products = getProducts();
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('jhunjhurProducts', JSON.stringify(products));
+                renderProducts(products);
+            }
+            return;
+        }
+        
+        const editBtn = e.target.closest('.btn-edit');
+        if (editBtn) {
+            alert(`📝 Edit product: ${editBtn.dataset.id}\n\nThis will open product editor.`);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
