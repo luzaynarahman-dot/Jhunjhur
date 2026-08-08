@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhunjhur Admin — Customers</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <style>
+        .customers-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--admin-gold);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .customer-name {
+            font-weight: 600;
+            color: var(--admin-text);
+        }
+        
+        .customer-email {
+            font-size: 0.65rem;
+            color: var(--admin-text-light);
+        }
+        
+        .customer-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.6rem;
+            color: var(--admin-text-light);
+        }
+        
+        .customer-stats span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .customer-stats i {
+            color: var(--admin-gold);
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border: 1px solid var(--admin-border);
+            border-radius: 6px;
+            background: var(--admin-white);
+            min-width: 220px;
+        }
+        
+        .search-box i {
+            color: var(--admin-text-light);
+            font-size: 0.8rem;
+        }
+        
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.75rem;
+            color: var(--admin-text);
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .customers-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .admin-table {
+                font-size: 0.6rem;
+            }
+            
+            .admin-table th,
+            .admin-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">
+            <img src="../assets/jhunjhur-logo.png" alt="Jhunjhur">
+            <span>Jhunjhur</span>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="products.html">
+                <i class="fa-solid fa-gem"></i>
+                <span>Products</span>
+                <span class="badge" id="productBadge">14</span>
+            </a>
+            <a href="orders.html">
+                <i class="fa-solid fa-truck"></i>
+                <span>Orders</span>
+                <span class="badge" id="orderBadge">0</span>
+            </a>
+            <a href="customers.html" class="active">
+                <i class="fa-regular fa-user"></i>
+                <span>Customers</span>
+                <span class="badge" id="customerBadge">0</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+                <span class="badge" id="wishlistBadge">0</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-star"></i>
+                <span>Reviews</span>
+                <span class="badge">8</span>
+            </a>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../index.html" target="_blank">
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+            <a href="#" id="adminLogout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1>Customers</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <button class="header-btn" title="Messages">
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
+                <div class="admin-profile">
+                    <img src="../assets/admin-avatar.jpg" alt="Admin">
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CUSTOMERS TOOLBAR -->
+        <div class="customers-toolbar">
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search customers by name or phone..." id="customerSearch">
+            </div>
+            <div style="font-size:0.7rem; color:var(--admin-text-light);">
+                <span id="customerCount">0 customers</span>
+            </div>
+        </div>
+
+        <!-- CUSTOMERS TABLE -->
+        <section class="recent-section">
+            <div class="section-header">
+                <h3>All Customers</h3>
+                <span style="font-size:0.7rem; color:var(--admin-text-light);">From order history</span>
+            </div>
+
+            <div class="table-wrap">
+                <table class="admin-table" id="customersTable">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Orders</th>
+                            <th>Total Spent</th>
+                            <th>Last Order</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customersBody">
+                        <!-- Customers loaded from orders -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="emptyCustomers" style="display:none; text-align:center; padding:60px 20px;">
+                <i class="fa-regular fa-user" style="font-size:3rem; color:var(--admin-border);"></i>
+                <h3 style="margin-top:15px; font-family:'Cormorant Garamond',serif;">No Customers Yet</h3>
+                <p style="color:var(--admin-text-light); font-size:0.8rem;">Customers who place orders will appear here.</p>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+<script>
+// =========================================================
+// CUSTOMERS DATA (Derived from Orders)
+// =========================================================
+
+function getCustomers() {
+    const orders = JSON.parse(localStorage.getItem('jhunjhurOrders')) || [];
+    const customerMap = new Map();
+    
+    orders.forEach(order => {
+        if (!customerMap.has(order.phone)) {
+            customerMap.set(order.phone, {
+                name: order.customer,
+                phone: order.phone,
+                orders: [],
+                totalSpent: 0,
+                lastOrder: order.date
+            });
+        }
+        const customer = customerMap.get(order.phone);
+        customer.orders.push(order.id);
+        customer.totalSpent += order.total;
+        if (new Date(order.date) > new Date(customer.lastOrder)) {
+            customer.lastOrder = order.date;
+        }
+    });
+    
+    return Array.from(customerMap.values());
+}
+
+function renderCustomers(customers) {
+    const tbody = document.getElementById('customersBody');
+    const empty = document.getElementById('emptyCustomers');
+    const count = document.getElementById('customerCount');
+    
+    if (!customers || customers.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        count.textContent = '0 customers';
+        return;
+    }
+    
+    empty.style.display = 'none';
+    count.textContent = `${customers.length} customers`;
+    
+    tbody.innerHTML = '';
+    
+    customers.forEach(customer => {
+        const initials = customer.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        const lastOrder = new Date(customer.lastOrder);
+        const dateStr = lastOrder.toLocaleDateString('en-BD', { 
+            day: '2-digit', 
+            month: 'short', 
+            year: 'numeric' 
+        });
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div class="customer-avatar">${initials}</div>
+                    <div>
+                        <div class="customer-name">${customer.name}</div>
+                    </div>
+                </div>
+            </td>
+            <td>${customer.phone}</td>
+            <td>${customer.orders.length}</td>
+            <td>৳${customer.totalSpent.toLocaleString()}</td>
+            <td style="font-size:0.7rem;">${dateStr}</td>
+            <td>
+                <button class="btn-sm btn-primary" onclick="viewCustomerOrders('${customer.phone}')" style="font-size:0.55rem; padding:4px 10px;">
+                    <i class="fa-solid fa-eye"></i> Orders
+                </button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function filterCustomers() {
+    const search = document.getElementById('customerSearch')?.value.toLowerCase() || '';
+    let customers = getCustomers();
+    
+    if (search) {
+        customers = customers.filter(c => 
+            c.name.toLowerCase().includes(search) || 
+            c.phone.includes(search)
+        );
+    }
+    
+    renderCustomers(customers);
+}
+
+function viewCustomerOrders(phone) {
+    const orders = JSON.parse(localStorage.getItem('jhunjhurOrders')) || [];
+    const customerOrders = orders.filter(o => o.phone === phone);
+    
+    if (customerOrders.length === 0) {
+        alert('No orders found for this customer.');
+        return;
+    }
+    
+    let msg = '📦 Orders for this customer:\n\n';
+    customerOrders.forEach(o => {
+        msg += `#${o.id} — ${o.items.length} items — ৳${o.total.toLocaleString()} — ${o.status}\n`;
+    });
+    msg += `\nTotal: ${customerOrders.length} orders`;
+    alert(msg);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    renderCustomers(getCustomers());
+    document.getElementById('customerSearch')?.addEventListener('input', filterCustomers);
+});
+
+// Update badge
+function updateCustomerBadge() {
+    const customers = getCustomers();
+    document.getElementById('customerBadge').textContent = customers.length;
+}
+
+// Call after any order changes
+window.updateCustomerBadge = updateCustomerBadge;
+</script>
+
+</body>
+</html>
