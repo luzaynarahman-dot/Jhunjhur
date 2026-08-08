@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Policy — Jhunjhur</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Galada&family=Montserrat:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .legal-page {
+            padding: 130px 6% 100px;
+            background: var(--cream);
+        }
+        
+        .legal-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 55px 60px;
+            border-radius: 16px;
+            box-shadow: 0 5px 30px rgba(48, 38, 23, 0.06);
+            border: 1px solid rgba(168, 117, 37, 0.08);
+        }
+        
+        .legal-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(168, 117, 37, 0.12);
+        }
+        
+        .legal-header .section-kicker {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .legal-header h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            color: var(--green);
+        }
+        
+        .legal-header .last-updated {
+            font-size: 0.7rem;
+            color: #b0a694;
+            margin-top: 5px;
+        }
+        
+        .legal-body h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+            color: var(--green);
+            margin: 30px 0 12px;
+        }
+        
+        .legal-body h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        .legal-body p {
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 0.92rem;
+            line-height: 1.9;
+            color: #6c665b;
+            margin-bottom: 14px;
+        }
+        
+        .legal-body ul {
+            margin: 8px 0 16px 25px;
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 0.92rem;
+            line-height: 1.9;
+            color: #6c665b;
+        }
+        
+        .legal-body ul li {
+            margin-bottom: 5px;
+        }
+        
+        .legal-body strong {
+            color: var(--green);
+        }
+        
+        .shipping-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px;
+            font-family: "Noto Serif Bengali", serif;
+            font-size: 0.85rem;
+        }
+        
+        .shipping-table th,
+        .shipping-table td {
+            padding: 10px 14px;
+            border: 1px solid rgba(168, 117, 37, 0.12);
+            text-align: left;
+        }
+        
+        .shipping-table th {
+            background: rgba(168, 117, 37, 0.06);
+            font-weight: 600;
+            color: var(--green);
+        }
+        
+        @media (max-width: 768px) {
+            .legal-page {
+                padding: 110px 5% 80px;
+            }
+            
+            .legal-container {
+                padding: 30px 25px;
+            }
+            
+            .shipping-table {
+                font-size: 0.7rem;
+            }
+            
+            .shipping-table th,
+            .shipping-table td {
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (Same as index.html) -->
+<header class="navbar" id="navbar">  
+    <div class="navbar-inner">  
+        <a href="index.html" class="brand" aria-label="Jhunjhur Home">  
+            <img src="assets/jhunjhur-logo.png" alt="Jhunjhur logo" class="brand-logo">  
+            <span class="brand-text">  
+                <strong>Jhunjhur</strong>  
+                <small>JEWELLERY & ACCESSORIES</small>  
+            </span>  
+        </a>  
+
+        <nav class="nav-links" id="navLinks">  
+            <a href="index.html">Home</a>  
+            <a href="index.html#shop">Shop</a>  
+            <a href="index.html#categories">Categories</a>  
+            <a href="index.html#why-jhunjhur">Why Jhunjhur</a>  
+            <a href="about.html">About</a>  
+            <a href="index.html#contact">Contact</a>  
+
+            <div class="mobile-nav-actions">  
+                <button type="button" class="mobile-action-btn" id="mobileSearchBtn">  
+                    <i class="fa-solid fa-magnifying-glass"></i>  
+                    <span>Search</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileAccountBtn">  
+                    <i class="fa-regular fa-user"></i>  
+                    <span>Account</span>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileCartBtn">  
+                    <i class="fa-solid fa-bag-shopping"></i>  
+                    <span>Cart</span>  
+                    <b id="mobileCartCount">0</b>  
+                </button>  
+                <button type="button" class="mobile-action-btn" id="mobileWishlistBtn">  
+                    <i class="fa-regular fa-heart"></i>  
+                    <span>Wishlist</span>  
+                    <b id="mobileWishlistCount">0</b>  
+                </button>  
+            </div>  
+        </nav>  
+
+        <div class="nav-actions">  
+            <button type="button" aria-label="Search" id="searchBtn">  
+                <i class="fa-solid fa-magnifying-glass"></i>  
+            </button>  
+            <button type="button" aria-label="Account" id="accountBtn">  
+                <i class="fa-regular fa-user"></i>  
+            </button>  
+            <button type="button" class="bag-btn" id="bagBtn" aria-label="Shopping bag">  
+                <i class="fa-solid fa-bag-shopping"></i>  
+                <span class="bag-count" id="bagCount">0</span>  
+            </button>  
+        </div>  
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">  
+            <i class="fa-solid fa-bars"></i>  
+        </button>  
+    </div>  
+</header>  
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- =========================================================
+     SHIPPING POLICY CONTENT
+========================================================= -->
+
+<section class="legal-page">
+
+    <div class="legal-container">
+
+        <div class="legal-header">
+            <span class="section-kicker">DELIVERY</span>
+            <h1>Shipping Policy</h1>
+            <p class="last-updated">Last Updated: January 2026</p>
+        </div>
+
+        <div class="legal-body">
+
+            <h2>১. ডেলিভারি এলাকা</h2>
+            <p>
+                আমরা <strong>সারা বাংলাদেশে</strong> ডেলিভারি দিয়ে থাকি। ঢাকা শহরের মধ্যে এবং ঢাকার বাইরে উভয় জায়গায় আমাদের ডেলিভারি সেবা রয়েছে।
+            </p>
+
+            <h2>২. ডেলিভারি সময়</h2>
+            <p>
+                অর্ডার কনফার্ম হওয়ার পর সাধারণত <strong>২-৫ কার্যদিবসের</strong> মধ্যে আপনার পণ্য পৌঁছে দেওয়া হয়। তবে ডেলিভারি সময় অঞ্চলভেদে ভিন্ন হতে পারে:
+            </p>
+
+            <table class="shipping-table">
+                <thead>
+                    <tr>
+                        <th>অঞ্চল</th>
+                        <th>ডেলিভারি সময়</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ঢাকা শহর</td>
+                        <td>২-৩ কার্যদিবস</td>
+                    </tr>
+                    <tr>
+                        <td>ঢাকার বাইরে (বিভাগীয় শহর)</td>
+                        <td>৩-৪ কার্যদিবস</td>
+                    </tr>
+                    <tr>
+                        <td>অন্যান্য জেলা</td>
+                        <td>৪-৫ কার্যদিবস</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>৩. ডেলিভারি চার্জ</h2>
+            <ul>
+                <li>সাধারণ ডেলিভারি চার্জ: <strong>৳৬০</strong></li>
+                <li><strong>৳২০০০</strong> এর বেশি অর্ডারে ডেলিভারি ফ্রি</li>
+                <li>ক্যাশ অন ডেলিভারি (COD) এর জন্য অতিরিক্ত চার্জ নেই</li>
+            </ul>
+
+            <h2>৪. অর্ডার ট্র্যাকিং</h2>
+            <p>
+                অর্ডার ডিসপ্যাচ হওয়ার পর আমরা আপনার মোবাইল নম্বরে <strong>ট্র্যাকিং নম্বর</strong> পাঠাব। আপনি আমাদের ওয়েবসাইটের অর্ডার ট্র্যাকিং পেজ থেকেও আপনার অর্ডারের অবস্থা দেখতে পারবেন।
+            </p>
+
+            <h2>৫. ডেলিভারি নিয়ম</h2>
+            <ul>
+                <li>ডেলিভারি কর্মী আপনার দেওয়া ঠিকানায় পণ্য পৌঁছে দেবেন</li>
+                <li>পণ্য গ্রহণের সময় দয়া করে পণ্যটি চেক করে নিন</li>
+                <li>কোনো সমস্যা হলে ডেলিভারি কর্মীকে জানান</li>
+                <li>ঠিকানা ভুল বা অস্তিত্বহীন থাকলে ডেলিভারি বিলম্বিত হতে পারে</li>
+            </ul>
+
+            <h2>৬. ডেলিভারি বিলম্ব</h2>
+            <p>
+                কখনো কখনো আবহাওয়া, ছুটির দিন বা অন্যান্য অপ্রত্যাশিত কারণে ডেলিভারি বিলম্বিত হতে পারে। আমরা সবসময় সময়মতো ডেলিভারি দিতে চেষ্টা করি। বিলম্ব হলে আমরা আপনাকে জানাব।
+            </p>
+
+            <h2>৭. ডেলিভারি পরিবর্তন</h2>
+            <p>
+                অর্ডার ডিসপ্যাচের আগ পর্যন্ত আপনি ঠিকানা পরিবর্তন করতে পারবেন। আমাদের কাস্টমার সার্ভিসে যোগাযোগ করুন: <strong>+880 1XXX-XXXXXX</strong>
+            </p>
+
+            <h2>৮. যোগাযোগ</h2>
+            <p>
+                শিপিং সম্পর্কিত কোনো প্রশ্ন থাকলে আমাদের সাথে যোগাযোগ করুন:
+                <br>
+                <strong>Email:</strong> hello@jhunjhur.com
+                <br>
+                <strong>Phone:</strong> +880 1XXX-XXXXXX
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER (Same as index.html) -->
+<footer class="site-footer" id="contact">
+
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="footer-logo">
+                <img src="assets/jhunjhur-logo.png" alt="Jhunjhur">
+                <span>Jhunjhur</span>
+            </a>
+
+            <p>দেশি ছোঁয়ায় আপনার সাজের ছোট্ট ছোট্ট সৌন্দর্য।</p>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+
+        </div>
+
+        <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>POLICIES</h3>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="shipping.html">Shipping Policy</a>
+            <a href="returns.html">Returns Policy</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>GET IN TOUCH</h3>
+            <a href="tel:+8801000000000"><i class="fa-solid fa-phone"></i> +880 1XXX-XXXXXX</a>
+            <a href="mailto:hello@jhunjhur.com"><i class="fa-regular fa-envelope"></i> hello@jhunjhur.com</a>
+            <span><i class="fa-solid fa-location-dot"></i> Bangladesh</span>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Jhunjhur. All rights reserved.</span>
+        <span>Desi. Timeless. Yours.</span>
+    </div>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
