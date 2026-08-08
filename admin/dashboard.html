@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhunjhur Admin — Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="admin-container">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================= -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        
+        <div class="sidebar-brand">
+            <img src="../assets/jhunjhur-logo.png" alt="Jhunjhur">
+            <span>Jhunjhur</span>
+            <small>Admin Panel</small>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="active">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="products.html">
+                <i class="fa-solid fa-gem"></i>
+                <span>Products</span>
+                <span class="badge">14</span>
+            </a>
+            <a href="orders.html">
+                <i class="fa-solid fa-truck"></i>
+                <span>Orders</span>
+                <span class="badge">3</span>
+            </a>
+            <a href="customers.html">
+                <i class="fa-regular fa-user"></i>
+                <span>Customers</span>
+                <span class="badge">27</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+                <span class="badge">12</span>
+            </a>
+            <a href="#">
+                <i class="fa-regular fa-star"></i>
+                <span>Reviews</span>
+                <span class="badge">8</span>
+            </a>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" target="_blank">
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+            <a href="#" id="adminLogout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+    <main class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" title="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <button class="header-btn" title="Messages">
+                    <i class="fa-regular fa-envelope"></i>
+                </button>
+                <div class="admin-profile">
+                    <img src="../assets/admin-avatar.jpg" alt="Admin">
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- =========================================================
+             STATS CARDS
+        ========================================================= -->
+        <section class="stats-grid">
+
+            <div class="stat-card stat-orders">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Orders</span>
+                    <strong class="stat-number">142</strong>
+                    <span class="stat-change up">↑ 12.5% this month</span>
+                </div>
+            </div>
+
+            <div class="stat-card stat-revenue">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Revenue</span>
+                    <strong class="stat-number">৳67,890</strong>
+                    <span class="stat-change up">↑ 8.2% this month</span>
+                </div>
+            </div>
+
+            <div class="stat-card stat-customers">
+                <div class="stat-icon">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Customers</span>
+                    <strong class="stat-number">327</strong>
+                    <span class="stat-change up">↑ 5 new this week</span>
+                </div>
+            </div>
+
+            <div class="stat-card stat-products">
+                <div class="stat-icon">
+                    <i class="fa-regular fa-gem"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Products</span>
+                    <strong class="stat-number">14</strong>
+                    <span class="stat-change">Low stock: 2 items</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             CHARTS / GRAPHS
+        ========================================================= -->
+        <section class="chart-section">
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Monthly Revenue</h3>
+                    <span>Last 6 months</span>
+                </div>
+                <canvas id="revenueChart" height="200"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Top Selling Products</h3>
+                    <span>This month</span>
+                </div>
+                <div class="top-products">
+                    <div class="top-product">
+                        <span class="rank">1</span>
+                        <span class="name">Desi Churi Set</span>
+                        <span class="sales">৳4,500</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="top-product">
+                        <span class="rank">2</span>
+                        <span class="name">Golden Jhumka</span>
+                        <span class="sales">৳3,800</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <div class="top-product">
+                        <span class="rank">3</span>
+                        <span class="name">Floral Pendant</span>
+                        <span class="sales">৳2,900</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 62%"></div>
+                        </div>
+                    </div>
+                    <div class="top-product">
+                        <span class="rank">4</span>
+                        <span class="name">Antique Tikli</span>
+                        <span class="sales">৳2,100</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="top-product">
+                        <span class="rank">5</span>
+                        <span class="name">Pearl Churi Set</span>
+                        <span class="sales">৳1,800</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 32%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =========================================================
+             RECENT ORDERS
+        ========================================================= -->
+        <section class="recent-section">
+
+            <div class="section-header">
+                <h3>Recent Orders</h3>
+                <a href="orders.html" class="view-all">View All →</a>
+            </div>
+
+            <div class="table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-001</td>
+                            <td>Sohana Islam</td>
+                            <td>3 items</td>
+                            <td>৳1,450</td>
+                            <td><span class="status delivered">Delivered</span></td>
+                            <td>Today, 2:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-002</td>
+                            <td>Farhana Mim</td>
+                            <td>2 items</td>
+                            <td>৳870</td>
+                            <td><span class="status processing">Processing</span></td>
+                            <td>Today, 11:15 AM</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-003</td>
+                            <td>Nusrat Jahan</td>
+                            <td>5 items</td>
+                            <td>৳2,340</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>Yesterday, 6:45 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-004</td>
+                            <td>Rafiqul Islam</td>
+                            <td>1 item</td>
+                            <td>৳390</td>
+                            <td><span class="status delivered">Delivered</span></td>
+                            <td>Yesterday, 3:20 PM</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-005</td>
+                            <td>Tasnim Akhter</td>
+                            <td>2 items</td>
+                            <td>৳720</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                            <td>2 days ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>
